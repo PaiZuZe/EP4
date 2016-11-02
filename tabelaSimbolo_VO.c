@@ -1,18 +1,17 @@
 #include<stdlib.h>
 #include<string.h>
-#include"tabelaSimbolo_VD.h"
+#include"tabelaSimbolo_VO.h"
 
-
-stableVD criaStableVD(int tamanho)
+stableVO criaStableVO(int tamanho)
 {
-    stableVD *stable = malloc(sizeof(stableVD));
+    stableVO *stable = malloc(sizeof(stableVO));
     stable->max = tamanho;
     stable->ultPos = 0;
     stable->bob = malloc(tamanho*sizeof(data));
     return(stable);
 }
 
-void destroiStableVD(stableVD *stable)
+void destroiStableVO(stableVO *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++){
@@ -23,8 +22,9 @@ void destroiStableVD(stableVD *stable)
     return;
 }
 
-void insereStableVD(char *key, stableVD *stable)
+void insereStableVO(char *key, stableVO *stable)
 {
+
     for(i = 0; i < stable->ultPos; i++){
         if(!strcmp(key,stable->bob[i]->palavra)){
             stable->bob[i]->freq +=1;
@@ -39,15 +39,14 @@ void insereStableVD(char *key, stableVD *stable)
     return;
 }
 
-stableVD realocaStableVD(stableVD *stable)
+int buscaBin(stableVO *stable, char *key)
 {
-    stableVD stableNova;
-    stableNova = criaStableVD(stable->max*2);
-    stableNova->ultPos = stable->ultPos;
-    for(i = 0; i < stable->ultPos; i++){
-        stableNova->bob[i]->freq = stable->bob[i]->freq;
-        strcpy(stableNova->bob[i]->palavra,stable->bob[i]->palavra);
+    int inicio, meio, fim, temp;
+    inicio = 0;
+    fim = stable->ultPos -1;
+    while(inicio <= fim){
+        meio = (inicio + fim)/2;
+        temp = strcmp(key, stable->bob[meio]->palavra);
+        if(temp )
     }
-    destroiStableVD(stable);
-    return(stableNova);
 }
