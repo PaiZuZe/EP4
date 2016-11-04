@@ -25,24 +25,31 @@ void destroiStableVO(stableVO *stable)
 void insereStableVO(char *key, stableVO *stable)
 {
     int i;
+    if(stabe->ultPos == stable->max){
+        stable = realocaStableVD(stable);
+    }
     i = buscaBin(stable, key);
     if(strcmp(key,stable->bob[i]->palavra)){
         stable->bob[i]->freq++;
         return;
     }
+    for(k = stabe->ultPos - 1; k > i;k--){
+        strcpy(stabe->bob[k + 1]->palavra,stabe->bob[k]->palavra);
+        stable->bob[k + 1]->freq = stable->bob[k]->freq;
+    }
+    strcpy(stable->bob[i + 1]->palavra,key);
+    if(stabe->ultPos == i + 1)
+        stable->ultPos++;
+    return;
     /*falta umas coisas daqui pra baixo nessa função ta bugado*/
-    for(i = 0; i < stable->ultPos; i++){
+    /*for(i = 0; i < stable->ultPos; i++){
         if(!strcmp(key,stable->bob[i]->palavra)){
             stable->bob[i]->freq +=1;
             return;
         }
     }
-    if(stabe->ultPos == stable->max){
-        stable = realocaStableVD(stable);
-    }
     strcpy(stable->bob[i]->palavra,key);
-    stable->ultPos++;
-    return;
+    stable->ultPos++;*/
 }
 
 int buscaBin(stableVO *stable, char *key)
@@ -55,7 +62,7 @@ int buscaBin(stableVO *stable, char *key)
         temp = strcmp(key, stable->bob[meio]->palavra);
         if(temp == 0) return(meio);
         else if(temp == 1) inicio = meio + 1;
-        else fim = meio + 1;
+        else fim = meio - 1;
     }
-    return meio;
+    return fim;
 }

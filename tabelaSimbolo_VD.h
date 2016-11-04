@@ -1,13 +1,13 @@
 #ifndef __TABELASIMBOLO_vd_H
 #define __TABELASIMBOLO_vd_H
 
-typedef struct  {
+typedef struct{
                 data *bob;
                 int ultPos;
                 int max;
                 } stableVD;
 
-typedef struct  {
+typedef struct{
                 char *palavra;
                 int freq;
                 } data;
