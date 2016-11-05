@@ -1,5 +1,5 @@
-#ifndef __TABELASIMBOLO_vd_H
-#define __TABELASIMBOLO_vd_H
+#ifndef __TABELASIMBOLO_VD_H
+#define __TABELASIMBOLO_VD_H
 
 typedef struct{
                 data *bob;

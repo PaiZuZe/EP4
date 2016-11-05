@@ -25,9 +25,15 @@ void destroiStableVO(stableVO *stable)
 void insereStableVO(char *key, stableVO *stable)
 {
     int i;
+    /*antes de posivelmente inserir um novo elemento, iremos verificar se a
+     *tebala esta cheia.
+     */
     if(stabe->ultPos == stable->max){
         stable = realocaStableVD(stable);
     }
+    /*com uma busca binaria podemos descobrir se o elemento se encontra na
+     *tabela e também se a palavra não se encontar podemos descobrir sua posição
+     */
     i = buscaBin(stable, key);
     if(strcmp(key,stable->bob[i]->palavra)){
         stable->bob[i]->freq++;
@@ -38,18 +44,12 @@ void insereStableVO(char *key, stableVO *stable)
         stable->bob[k + 1]->freq = stable->bob[k]->freq;
     }
     strcpy(stable->bob[i + 1]->palavra,key);
+    /*como é possivel que adicionamos um iten na ultima possição, devemos
+     *atualizar ultPos caso nescessario
+     */
     if(stabe->ultPos == i + 1)
         stable->ultPos++;
     return;
-    /*falta umas coisas daqui pra baixo nessa função ta bugado*/
-    /*for(i = 0; i < stable->ultPos; i++){
-        if(!strcmp(key,stable->bob[i]->palavra)){
-            stable->bob[i]->freq +=1;
-            return;
-        }
-    }
-    strcpy(stable->bob[i]->palavra,key);
-    stable->ultPos++;*/
 }
 
 int buscaBin(stableVO *stable, char *key)
