@@ -2,15 +2,15 @@
 #define __TABELASIMBOLO_VO_H__
 
 typedef struct{
+                char *palavra;
+                int freq;
+                } data;
+typedef struct{
                 data *bob;
                 int ultPos;
                 int max;
                 } stableVO;
 
-typedef struct{
-                char *palavra;
-                int freq;
-                } data;
 
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
 *usa um vetor ordenado com  seu tamanho sendo estipulado pelo usuario.
@@ -26,12 +26,12 @@ void destroiStableVO(stableVO *stable);
  *estiver na tabela a função só ira acrecentar a frequencia dela, se a tabela se
  *encontar cheia a funçao ira chamar a função realocaStableVO.
  */
-void insereStableVO(char *key, stableVO stable);
+void insereStableVO(char *key, stableVO *stable);
 
 /*Função que recebe uma tabela de simbolos e ira criar uma outra tabela de
  *simbolos com os mesmos itens porem com o dobro so tamanho da original.
  */
-stableVO realocaStableVO(stableVO *stable);
+stableVO *realocaStableVO(stableVO *stable);
 
 /*Função recebe uma tabela de simbolos ordenada, uma string e retorna o valor
  *da posição se a string estiver na tabela e -1 se não se encontar; buscaBin

@@ -2,7 +2,7 @@
 #include<string.h>
 #include"tabelaSimbolo_VO.h"
 
-stableVO criaStableVO(int tamanho)
+stableVO *criaStableVO(int tamanho)
 {
     stableVO *stable = malloc(sizeof(stableVO));
     stable->max = tamanho;
@@ -15,8 +15,8 @@ void destroiStableVO(stableVO *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++){
-        free(stable->bob[i]->palavra);
-        free(stable->bob[i]);
+        free(stable->bob[i].palavra);
+        /*free(stable->bob[i]);*/
     }
     free(stable);
     return;
@@ -24,30 +24,30 @@ void destroiStableVO(stableVO *stable)
 
 void insereStableVO(char *key, stableVO *stable)
 {
-    int i;
+    int i,k;
     /*antes de posivelmente inserir um novo elemento, iremos verificar se a
      *tebala esta cheia.
      */
-    if(stabe->ultPos == stable->max){
-        stable = realocaStableVD(stable);
+    if(stable->ultPos == stable->max){
+        stable = realocaStableVO(stable);
     }
     /*com uma busca binaria podemos descobrir se o elemento se encontra na
      *tabela e também se a palavra não se encontar podemos descobrir sua posição
      */
     i = buscaBin(stable, key);
-    if(strcmp(key,stable->bob[i]->palavra)){
-        stable->bob[i]->freq++;
+    if(strcmp(key,stable->bob[i].palavra)){
+        stable->bob[i].freq++;
         return;
     }
-    for(k = stabe->ultPos - 1; k > i;k--){
-        strcpy(stabe->bob[k + 1]->palavra,stabe->bob[k]->palavra);
-        stable->bob[k + 1]->freq = stable->bob[k]->freq;
+    for(k = stable->ultPos - 1; k > i;k--){
+        strcpy(stable->bob[k + 1].palavra,stable->bob[k].palavra);
+        stable->bob[k + 1].freq = stable->bob[k].freq;
     }
-    strcpy(stable->bob[i + 1]->palavra,key);
+    strcpy(stable->bob[i + 1].palavra,key);
     /*como é possivel que adicionamos um iten na ultima possição, devemos
      *atualizar ultPos caso nescessario
      */
-    if(stabe->ultPos == i + 1)
+    if(stable->ultPos == i + 1)
         stable->ultPos++;
     return;
 }
@@ -59,7 +59,7 @@ int buscaBin(stableVO *stable, char *key)
     fim = stable->ultPos -1;
     while(inicio <= fim){
         meio = (inicio + fim)/2;
-        temp = strcmp(key, stable->bob[meio]->palavra);
+        temp = strcmp(key, stable->bob[meio].palavra);
         if(temp == 0) return(meio);
         else if(temp == 1) inicio = meio + 1;
         else fim = meio - 1;
