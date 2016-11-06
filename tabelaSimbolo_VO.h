@@ -38,3 +38,5 @@ stableVO *realocaStableVO(stableVO *stable);
  *modificada para ser usada em string's e não números
  */
 int buscaBin(stableVO *stable, char *key);
+
+#endif

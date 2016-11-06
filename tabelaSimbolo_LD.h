@@ -1,6 +1,10 @@
 #ifndef __TABELASIMBOLO_LD_H
 #define __TABELASIMBOLO_LD_H
 
+typedef struct{
+    char *palavra;
+    int freq;
+} data;
 typedef struct no {
                     data bob;
                     struct no *next;
@@ -8,10 +12,6 @@ typedef struct no {
 
 typedef celula *apontador;
 
-typedef struct{
-                char *palavra;
-                int freq;
-                } data;
 /*função cria uma variavel com o começo da lista.
  */
 apontador criaStableLD();
@@ -25,3 +25,5 @@ void destroiStableLD(apontador inicio);
  *verdade a função ira aumentar a frequencia da palavra.
  */
 void insereStableLD(char *key ,apontador inicio);
+
+#endif

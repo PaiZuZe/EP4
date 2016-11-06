@@ -2,9 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 /*#include"tabelaSimbolo_VD.h"
-*/#include"tabelaSimbolo_VO.h"
-/*#include"tabelaSimbolo_LD.h"
-#include"tabelaSimbolo_LO.h"
+#include"tabelaSimbolo_VO.h"
+*/#include"tabelaSimbolo_LD.h"
+/*#include"tabelaSimbolo_LO.h"
 */
 void tabelaVD(char *arquivoTxt, char *tipoOrd){
 
