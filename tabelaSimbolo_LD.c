@@ -13,7 +13,7 @@ void destroiStableLD(apontador inicio)
     while(inicio != NULL){
         prox = inicio->next;
         free(inicio->bob.palavra);
-        /*free(inicio->bob);*/
+        free(inicio->bob)
         free(inicio);
         inicio = prox;
     }

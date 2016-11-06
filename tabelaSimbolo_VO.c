@@ -16,7 +16,7 @@ void destroiStableVO(stableVO *stable)
     int i;
     for(i = 0; i < stable->ultPos; i++){
         free(stable->bob[i].palavra);
-        /*free(stable->bob[i]);*/
+        free(stable->bob[i]);
     }
     free(stable);
     return;
