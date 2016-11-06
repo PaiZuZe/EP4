@@ -52,6 +52,23 @@ void insereStableVO(char *key, stableVO *stable)
     return;
 }
 
+stableVO *realocaStableVO(stableVO *stable)
+{
+    stableVO *stableNova;
+    int i;
+    stableNova = criaStableVO(stable->max*2);
+    stableNova->ultPos = stable->ultPos;
+    /*ao dobrarmos o tamanho garantimos que não iremos fazer essa operação
+     *muitas vezes
+     */
+    for(i = 0; i < stable->ultPos; i++){
+        stableNova->bob[i].freq = stable->bob[i].freq;
+        strcpy(stableNova->bob[i].palavra, stable->bob[i].palavra);
+    }
+    destroiStableVO(stable);
+    return(stableNova);
+}
+
 int buscaBin(stableVO *stable, char *key)
 {
     int inicio, meio, fim, temp;
