@@ -2,30 +2,29 @@
 #include<string.h>
 #include"tabelaSimbolo_LD.h"
 
-apontador criaStableLD()
+apontadorLD criaStableLD()
 {
-    apontador inicio = NULL;
+    apontadorLD inicio = NULL;
     return(inicio);
 }
-void destroiStableLD(apontador inicio)
+void destroiStableLD(apontadorLD inicio)
 {
-    apontador prox;
+    apontadorLD prox;
     while(inicio != NULL){
         prox = inicio->next;
         free(inicio->bob.palavra);
-        free(inicio->bob)
         free(inicio);
         inicio = prox;
     }
     return;
 }
-void insereStableLD(char *key ,apontador inicio)
+void insereStableLD(char *key ,apontadorLD inicio)
 {
-    apontador temp, anterior;
-    apontador novoItem;
+    apontadorLD temp, anterior;
+    apontadorLD novoItem;
     /*primeiro devemos verificar se a lista esta vazia.*/
     if(!inicio){
-        inicio = malloc(sizeof(celula));
+        inicio = malloc(sizeof(celulaLD));
         strcpy(key,inicio->bob.palavra);
         inicio->bob.freq = 1;
         inicio->next = NULL;
@@ -42,7 +41,7 @@ void insereStableLD(char *key ,apontador inicio)
     /*se a função chegou até este ponto, percorremos a tabela inteira sem
      *encontar a palavra, assim a iremos inserir no final.
      */
-    novoItem = malloc(sizeof(celula));
+    novoItem = malloc(sizeof(celulaLD));
     strcpy(key,novoItem->bob.palavra);
     novoItem->bob.freq = 1;
     novoItem->next = NULL;

@@ -4,9 +4,9 @@
 typedef struct{
                 char *palavra;
                 int freq;
-                } data;
+                } dataVO;
 typedef struct{
-                data *bob;
+                dataVO *bob;
                 int ultPos;
                 int max;
                 } stableVO;

@@ -7,17 +7,16 @@ stableVO *criaStableVO(int tamanho)
     stableVO *stable = malloc(sizeof(stableVO));
     stable->max = tamanho;
     stable->ultPos = 0;
-    stable->bob = malloc(tamanho*sizeof(data));
+    stable->bob = malloc(tamanho*sizeof(dataVO));
     return(stable);
 }
 
 void destroiStableVO(stableVO *stable)
 {
     int i;
-    for(i = 0; i < stable->ultPos; i++){
+    for(i = 0; i < stable->ultPos; i++)
         free(stable->bob[i].palavra);
-        free(stable->bob[i]);
-    }
+    free(stable->bob);
     free(stable);
     return;
 }

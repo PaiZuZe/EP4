@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 #include"tabelaSimbolo_VD.h"
 #include"tabelaSimbolo_VO.h"
 #include"tabelaSimbolo_LD.h"
@@ -28,15 +29,7 @@ int main()
     arquivoTxt = malloc(sizeof(char));
     tipoTabela = malloc(sizeof(char));
     tipoOrd = malloc(sizeof(char));
-    if(scanf("%s", arquivoTxt) != 1){
-        printf("VOCE TENTOU ME PASSAR MERDA\n");
-        return 0;
-    }
-    if(scanf("%s", tipoTabela) != 1){
-        printf("VOCE TENTOU ME PASSAR MERDA\n");
-        return 0;
-    }
-    if(scanf("%s", tipoOrd) != 1){
+    if(scanf("%s%s%s", arquivoTxt, tipoTabela, tipoOrd) != 3){
         printf("VOCE TENTOU ME PASSAR MERDA\n");
         return 0;
     }
