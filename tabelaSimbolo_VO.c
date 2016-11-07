@@ -2,12 +2,12 @@
 #include<string.h>
 #include"tabelaSimbolo_VO.h"
 
-stableVO *criaStableVO(int tamanho)
+stableVO *criaStableVO()
 {
     stableVO *stable = malloc(sizeof(stableVO));
-    stable->max = tamanho;
+    stable->max = 16;
     stable->ultPos = 0;
-    stable->bob = malloc(tamanho*sizeof(dataVO));
+    stable->bob = malloc(stable->max*sizeof(dataVO));
     return(stable);
 }
 
@@ -39,9 +39,11 @@ void insereStableVO(char *key, stableVO *stable)
         return;
     }
     for(k = stable->ultPos - 1; k > i;k--){
+        stable->bob[k + 1].palavra = malloc(strlen(stable->bob[k].palavra)*sizeof(char));
         strcpy(stable->bob[k + 1].palavra,stable->bob[k].palavra);
         stable->bob[k + 1].freq = stable->bob[k].freq;
     }
+    stable->bob[i + 1].palavra = malloc(strlen(key)*sizeof(char));
     strcpy(stable->bob[i + 1].palavra,key);
     /*como é possivel que adicionamos um iten na ultima possição, devemos
      *atualizar ultPos caso nescessario
@@ -62,6 +64,7 @@ stableVO *realocaStableVO(stableVO *stable)
      */
     for(i = 0; i < stable->ultPos; i++){
         stableNova->bob[i].freq = stable->bob[i].freq;
+        stableNova->bob[i].palavra = malloc(strlen(stable->bob[i].palavra)*sizeof(char));
         strcpy(stableNova->bob[i].palavra, stable->bob[i].palavra);
     }
     destroiStableVO(stable);

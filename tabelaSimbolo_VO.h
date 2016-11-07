@@ -13,9 +13,9 @@ typedef struct{
 
 
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
-*usa um vetor ordenado com  seu tamanho sendo estipulado pelo usuario.
+*usa um vetor ordenado.
  */
-stableVO *criaStableVO(int tamanho);
+stableVO *criaStableVO();
 
 /*Função que receve uma de simbolos que usa um vetor ordenado e ira destruir ela.
  */

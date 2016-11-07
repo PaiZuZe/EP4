@@ -25,7 +25,8 @@ void insereStableLD(char *key ,apontadorLD inicio)
     /*primeiro devemos verificar se a lista esta vazia.*/
     if(!inicio){
         inicio = malloc(sizeof(celulaLD));
-        strcpy(key,inicio->bob.palavra);
+        inicio->bob.palavra = malloc(strlen(key)*sizeof(char));
+        strcpy(inicio->bob.palavra, key);
         inicio->bob.freq = 1;
         inicio->next = NULL;
         return;
@@ -42,7 +43,8 @@ void insereStableLD(char *key ,apontadorLD inicio)
      *encontar a palavra, assim a iremos inserir no final.
      */
     novoItem = malloc(sizeof(celulaLD));
-    strcpy(key,novoItem->bob.palavra);
+    novoItem->bob.palavra = malloc(strlen(key)*sizeof(char));
+    strcpy(novoItem->bob.palavra, key);
     novoItem->bob.freq = 1;
     novoItem->next = NULL;
     anterior->next = novoItem;

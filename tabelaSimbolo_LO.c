@@ -36,6 +36,7 @@ apontadorLO insereStableLO(char *key ,apontadorLO inicio)
         temp->bob.freq++;
         return(inicio);
     }
+    novoItem->bob.palavra = malloc(strlen(key)*sizeof(char));
     strcpy(novoItem->bob.palavra, key);
     novoItem->bob.freq = 1;
     novoItem->next = temp;

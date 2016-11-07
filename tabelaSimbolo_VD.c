@@ -1,13 +1,14 @@
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_VD.h"
 
-stableVD *criaStableVD(int tamanho)
+stableVD *criaStableVD()
 {
     stableVD *stable = malloc(sizeof(stableVD));
-    stable->max = tamanho;
+    stable->max = 16;
     stable->ultPos = 0;
-    stable->bob = malloc(tamanho*sizeof(dataVD));
+    stable->bob = malloc(stable->max*sizeof(dataVD));
     return(stable);
 }
 
@@ -37,6 +38,7 @@ void insereStableVD(char *key, stableVD *stable)
     /*como a tabela tem espaço para a palavra nova e ela não estava na lista
      *simplesmente podemos mudar a frequencia para um adicionar a palavra
      */
+    stable->bob[i].palavra = malloc(strlen(key)*sizeof(char));
     strcpy(stable->bob[i].palavra,key);
     stable->bob[i].freq = 1;
     stable->ultPos++;
@@ -54,6 +56,7 @@ stableVD *realocaStableVD(stableVD *stable)
      */
     for(i = 0; i < stable->ultPos; i++){
         stableNova->bob[i].freq = stable->bob[i].freq;
+        stableNova->bob[i].palavra = malloc(strlen(stable->bob[i].palavra)*sizeof(char));
         strcpy(stableNova->bob[i].palavra, stable->bob[i].palavra);
     }
     destroiStableVD(stable);

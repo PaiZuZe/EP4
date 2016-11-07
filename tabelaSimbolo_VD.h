@@ -13,9 +13,9 @@ typedef struct{
 
 
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
- *usa um vetor desordenado com  seu tamanho sendo estipulado pelo usuario.
+ *usa um vetor desordenado.
  */
-stableVD *criaStableVD(int tamanho);
+stableVD *criaStableVD();
 /*Função que receve uma de simbolos que usa um vetor desordenado e ira destruir
  *ela.
  */

@@ -9,10 +9,12 @@
 #include"tabelaSimbolo_LO.h"
 void tabelaVD(char *arquivoTxt, char *tipoOrd){
     int caracter, i;
+    stableVD *stable;
     FILE *arquivo;
     Buffer *word;
     arquivo = fopen(arquivoTxt, "r");
     word = criaBuffer();
+    stable = criaStableVD();
     while(!feof(arquivo)){
         caracter = fgetc(arquivo);
         while(!isalpha(caracter) && !feof(arquivo))
@@ -22,6 +24,7 @@ void tabelaVD(char *arquivoTxt, char *tipoOrd){
             caracter = fgetc(arquivo);
         }
         adicionaNoBuffer(word, 0);
+        insereStableVD(word->palavra, stable);
         for(i = 0; i < word->top; i++) printf("%c",word->palavra[i]);
         /*agora devemos ter uma palavra no buffer, só mandar para as func*/
 
