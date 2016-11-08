@@ -7,6 +7,16 @@
 #include"tabelaSimbolo_VO.h"
 #include"tabelaSimbolo_LD.h"
 #include"tabelaSimbolo_LO.h"
+void imprimeVD_A(stableVD *stable)
+{
+    int i;
+    for(i = 0; i < stable->ultPos; i++){
+        printf("%s ", stable->bob[i].palavra);
+        printf("%d\n", stable->bob[i].freq);
+    }
+    return;
+}
+
 void tabelaVD(char *arquivoTxt, char *tipoOrd){
     int caracter;
     stableVD *stable;
@@ -26,8 +36,13 @@ void tabelaVD(char *arquivoTxt, char *tipoOrd){
         }
         adicionaNoBuffer(word, 0);
         stable = insereStableVD(word->palavra, stable);
-        /*agora devemos ter uma palavra no buffer, só mandar para as func*/
         clearBuffer(word);
+    }
+    /*agora temos todas aspalavras do texto na table, basta imprimila como
+     *desejado.
+     */
+    if(!strcmp(tipoOrd, "A")){
+        imprimeVD_A(stable);
     }
     return;
 }
@@ -44,54 +59,46 @@ void tabelaLO(char *arquivoTxt, char *tipoOrd){
     return;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    char *arquivoTxt, *tipoTabela, *tipoOrd;
-    arquivoTxt = malloc(sizeof(char));
-    tipoTabela = malloc(sizeof(char));
-    tipoOrd = malloc(sizeof(char));
-    if(scanf("%s%s%s", arquivoTxt, tipoTabela, tipoOrd) != 3){
-        printf("Erro no scanf\n");
-        return 0;
-    }
-    if(strcmp(tipoTabela, "VD") == 0){
-        if(strcmp(tipoOrd, "A") == 0 || strcmp(tipoOrd, "O") == 0){
-            tabelaVD(arquivoTxt, tipoOrd);
+    if(strcmp(argv[2], "VD") == 0){
+        if(strcmp(argv[3], "A") == 0 || strcmp(argv[3], "O") == 0){
+            tabelaVD(argv[1], argv[3]);
         }
         else{
             printf("Argumento tipo de ordenação não é valido\n");
             return 0;
         }
     }
-    else if(strcmp(tipoTabela, "VO") == 0){
-        if(strcmp(tipoOrd, "A") == 0 || strcmp(tipoOrd, "O") == 0){
-            tabelaVO(arquivoTxt, tipoOrd);
+    else if(strcmp(argv[2], "VO") == 0){
+        if(strcmp(argv[3], "A") == 0 || strcmp(argv[3], "O") == 0){
+            tabelaVO(argv[1], argv[3]);
         }
         else{
             printf("Argumento tipo de ordenação não é valido\n");
             return 0;
         }
     }
-    else if(strcmp(tipoTabela, "LD") == 0){
-        if(strcmp(tipoOrd, "A") == 0 || strcmp(tipoOrd, "O") == 0){
-            tabelaLD(arquivoTxt, tipoOrd);
+    else if(strcmp(argv[2], "LD") == 0){
+        if(strcmp(argv[3], "A") == 0 || strcmp(argv[3], "O") == 0){
+            tabelaLD(argv[1], argv[3]);
         }
         else{
             printf("Argumento tipo de ordenação não é valido\n");
             return 0;
         }
     }
-    else if(strcmp(tipoTabela, "LO") == 0){
-        if(strcmp(tipoOrd, "A") == 0 || strcmp(tipoOrd, "O") == 0){
-            tabelaLO(arquivoTxt, tipoOrd);
+    else if(strcmp(argv[2], "LO") == 0){
+        if(strcmp(argv[3], "A") == 0 || strcmp(argv[3], "O") == 0){
+            tabelaLO(argv[1], argv[3]);
         }
         else{
             printf("Argumento tipo de ordenação não é valido\n");
             return 0;
         }
     }
-    else if(strcmp(tipoTabela, "AB") == 0){
-        if(strcmp(tipoOrd, "A") == 0 || strcmp(tipoOrd, "O") == 0){
+    else if(strcmp(argv[2], "AB") == 0){
+        if(strcmp(argv[3], "A") == 0 || strcmp(argv[3], "O") == 0){
             printf("yay\n");
         }
         else{
