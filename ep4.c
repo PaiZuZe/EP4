@@ -8,7 +8,7 @@
 #include"tabelaSimbolo_LD.h"
 #include"tabelaSimbolo_LO.h"
 void tabelaVD(char *arquivoTxt, char *tipoOrd){
-    int caracter, i;
+    int caracter;
     stableVD *stable;
     FILE *arquivo;
     Buffer *word;
@@ -20,6 +20,7 @@ void tabelaVD(char *arquivoTxt, char *tipoOrd){
         while(!isalpha(caracter) && !feof(arquivo))
             caracter = fgetc(arquivo);
         while(isalnum(caracter)){
+            caracter = tolower(caracter);
             adicionaNoBuffer(word, caracter);
             caracter = fgetc(arquivo);
         }

@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include<myHeader.h>
-
+#include<stdio.h>
 Buffer *criaBuffer()
 {
     Buffer *B = malloc(sizeof(Buffer));
@@ -15,10 +15,12 @@ void realocaBuffer(Buffer *B)
     Buffer *novoBuffer = malloc(sizeof(Buffer));
     novoBuffer->max = 2*B->max;
     novoBuffer->top = B->top;
+    novoBuffer->palavra = malloc(novoBuffer->max*sizeof(char));
     for(i = 0; i < B->max; i++)
         novoBuffer->palavra[i] = B->palavra[i];
-    free(B);
-    B = novoBuffer;
+    free(B->palavra);
+    B->max = B->max;
+    B->palavra = novoBuffer->palavra;
     return;
 }
 void adicionaNoBuffer(Buffer *B, char c)
