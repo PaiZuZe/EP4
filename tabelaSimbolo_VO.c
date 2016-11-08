@@ -57,8 +57,10 @@ stableVO *realocaStableVO(stableVO *stable)
 {
     stableVO *stableNova;
     int i;
-    stableNova = criaStableVO(stable->max*2);
+    stableNova = malloc(sizeof(stableVO));
+    stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
+    stableNova->bob = malloc(stableNova->max*sizeof(dataVO));
     /*ao dobrarmos o tamanho garantimos que não iremos fazer essa operação
      *muitas vezes
      */

@@ -49,8 +49,10 @@ stableVD *realocaStableVD(stableVD *stable)
 {
     stableVD *stableNova;
     int i;
-    stableNova = criaStableVD(stable->max*2);
+    stableNova = malloc(sizeof(stableVD));
+    stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
+    stableNova->bob = malloc(stableNova->max*sizeof(dataVD));
     /*ao dobrarmos o tamanho garantimos que não iremos fazer essa operação
      *muitas vezes
      */
