@@ -25,7 +25,7 @@ void destroiStableVD(stableVD *stable);
  *acrecentar a frequencia dela, se a tabela se encontar cheia a funçao ira chamar
  *a função realocaStableVD.
  */
-void insereStableVD(char *key, stableVD *stable);
+stableVD *insereStableVD(char *key, stableVD *stable);
 /*Função que recebe uma tabela de simbolos e ira criar uma outra tabela de
  *simbolos com os mesmos itens porem com o dobro so tamanho da original.
  */

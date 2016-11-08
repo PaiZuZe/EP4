@@ -21,7 +21,7 @@ void destroiStableVO(stableVO *stable)
     return;
 }
 
-void insereStableVO(char *key, stableVO *stable)
+stableVO *insereStableVO(char *key, stableVO *stable)
 {
     int i,k;
     /*antes de posivelmente inserir um novo elemento, iremos verificar se a
@@ -36,7 +36,7 @@ void insereStableVO(char *key, stableVO *stable)
     i = buscaBin(stable, key);
     if(strcmp(key,stable->bob[i].palavra)){
         stable->bob[i].freq++;
-        return;
+        return stable;
     }
     for(k = stable->ultPos - 1; k > i;k--){
         stable->bob[k + 1].palavra = malloc(strlen(stable->bob[k].palavra)*sizeof(char));
@@ -50,7 +50,7 @@ void insereStableVO(char *key, stableVO *stable)
      */
     if(stable->ultPos == i + 1)
         stable->ultPos++;
-    return;
+    return stable;
 }
 
 stableVO *realocaStableVO(stableVO *stable)

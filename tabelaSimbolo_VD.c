@@ -22,13 +22,13 @@ void destroiStableVD(stableVD *stable)
     return;
 }
 
-void insereStableVD(char *key, stableVD *stable)
+stableVD *insereStableVD(char *key, stableVD *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++){
         if(!strcmp(key,stable->bob[i].palavra)){
             stable->bob[i].freq++;
-            return;
+            return stable;
         }
     }
     /*antes de inserirmos a palavra pode ser que a tabela esteja cheia*/
@@ -41,8 +41,9 @@ void insereStableVD(char *key, stableVD *stable)
     stable->bob[i].palavra = malloc(strlen(key)*sizeof(char));
     strcpy(stable->bob[i].palavra,key);
     stable->bob[i].freq = 1;
+    printf("%s\n", stable->bob[stable->ultPos].palavra);
     stable->ultPos++;
-    return;
+    return stable;
 }
 
 stableVD *realocaStableVD(stableVD *stable)

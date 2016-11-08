@@ -26,7 +26,7 @@ void destroiStableVO(stableVO *stable);
  *estiver na tabela a função só ira acrecentar a frequencia dela, se a tabela se
  *encontar cheia a funçao ira chamar a função realocaStableVO.
  */
-void insereStableVO(char *key, stableVO *stable);
+stableVO *insereStableVO(char *key, stableVO *stable);
 
 /*Função que recebe uma tabela de simbolos e ira criar uma outra tabela de
  *simbolos com os mesmos itens porem com o dobro so tamanho da original.

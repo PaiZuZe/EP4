@@ -24,11 +24,8 @@ void tabelaVD(char *arquivoTxt, char *tipoOrd){
             caracter = fgetc(arquivo);
         }
         adicionaNoBuffer(word, 0);
-        insereStableVD(word->palavra, stable);
-        for(i = 0; i < word->top; i++) printf("%c",word->palavra[i]);
+        stable = insereStableVD(word->palavra, stable);
         /*agora devemos ter uma palavra no buffer, só mandar para as func*/
-
-        printf("\n");
         clearBuffer(word);
     }
     return;
