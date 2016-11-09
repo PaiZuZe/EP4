@@ -1,7 +1,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_VO.h"
-
+#include<stdio.h>
 stableVO *criaStableVO()
 {
     stableVO *stable = malloc(sizeof(stableVO));
