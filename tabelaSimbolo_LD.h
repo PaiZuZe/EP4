@@ -24,6 +24,6 @@ void destroiStableLD(apontadorLD inicio);
  *string no fim da tabela se ela não se encontar na tabela, se o ultímo for
  *verdade a função ira aumentar a frequencia da palavra.
  */
-void insereStableLD(char *key ,apontadorLD inicio);
+apontadorLD insereStableLD(char *key ,apontadorLD inicio);
 
 #endif

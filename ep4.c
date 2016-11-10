@@ -25,6 +25,16 @@ void imprimeVO_A(stableVO *stable)
     }
     return;
 }
+void imprimeLD_A(apontadorLD stable)
+{
+    apontadorLD i;
+    for(i = stable; i != NULL; i = i->next){
+        printf("%s ", i->bob.palavra);
+        printf("%d\n", i->bob.freq);
+    }
+    return;
+}
+
 
 void tabelaVD(char *arquivoTxt, char *tipoOrd){
     int caracter;
@@ -85,7 +95,32 @@ void tabelaVO(char *arquivoTxt, char *tipoOrd){
     return;
 }
 void tabelaLD(char *arquivoTxt, char *tipoOrd){
-
+    int caracter;
+    apontadorLD stable;
+    FILE *arquivo;
+    Buffer *word;
+    arquivo = fopen(arquivoTxt, "r");
+    word = criaBuffer();
+    stable = criaStableLD();
+    while(!feof(arquivo)){
+        caracter = fgetc(arquivo);
+        while(!isalpha(caracter) && !feof(arquivo))
+            caracter = fgetc(arquivo);
+        while(isalnum(caracter)){
+            caracter = tolower(caracter);
+            adicionaNoBuffer(word, caracter);
+            caracter = fgetc(arquivo);
+        }
+        adicionaNoBuffer(word, 0);
+        stable = insereStableLD(word->palavra, stable);
+        clearBuffer(word);
+    }
+    /*agora temos todas aspalavras do texto na table, basta imprimila como
+     *desejado.
+     */
+    if(!strcmp(tipoOrd, "A")){
+        imprimeLD_A(stable);
+    }
     return;
 }
 void tabelaLO(char *arquivoTxt, char *tipoOrd){

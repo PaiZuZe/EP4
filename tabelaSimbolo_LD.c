@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_LD.h"
+#include <stdio.h>
 
 apontadorLD criaStableLD()
 {
@@ -18,7 +19,7 @@ void destroiStableLD(apontadorLD inicio)
     }
     return;
 }
-void insereStableLD(char *key ,apontadorLD inicio)
+apontadorLD insereStableLD(char *key ,apontadorLD inicio)
 {
     apontadorLD temp, anterior;
     apontadorLD novoItem;
@@ -29,14 +30,14 @@ void insereStableLD(char *key ,apontadorLD inicio)
         strcpy(inicio->bob.palavra, key);
         inicio->bob.freq = 1;
         inicio->next = NULL;
-        return;
+        return inicio;
     }
     /*como a lista não esta vazia, devemos procurar a palavra na tabela.*/
     anterior = NULL;
     for(temp = inicio; temp != NULL; anterior = temp, temp = temp->next){
         if(!strcmp(key, temp->bob.palavra)){
             temp->bob.freq++;
-            return;
+            return inicio;
         }
     }
     /*se a função chegou até este ponto, percorremos a tabela inteira sem
@@ -48,5 +49,6 @@ void insereStableLD(char *key ,apontadorLD inicio)
     novoItem->bob.freq = 1;
     novoItem->next = NULL;
     anterior->next = novoItem;
+    return inicio;
 }
 /**/
