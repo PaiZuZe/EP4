@@ -13,12 +13,12 @@ void imprimeVD_A(stableVD *stable)
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->bob[i].palavra);
         printf("%d\n", stable->bob[i].freq);
-        int i;
     }
     return;
 }
 void imprimeVO_A(stableVO *stable)
 {
+    int i;
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->bob[i].palavra);
         printf("%d\n", stable->bob[i].freq);
