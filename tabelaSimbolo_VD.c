@@ -41,7 +41,6 @@ stableVD *insereStableVD(char *key, stableVD *stable)
     stable->bob[i].palavra = malloc(strlen(key)*sizeof(char));
     strcpy(stable->bob[i].palavra,key);
     stable->bob[i].freq = 1;
-    printf("%s\n", stable->bob[stable->ultPos].palavra);
     stable->ultPos++;
     return stable;
 }

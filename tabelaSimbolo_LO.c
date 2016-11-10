@@ -1,7 +1,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_LO.h"
-
+#include<stdio.h>
 apontadorLO criaStableLO()
 {
     apontadorLO inicio = NULL;
@@ -26,28 +26,37 @@ apontadorLO insereStableLO(char *key ,apontadorLO inicio)
     apontadorLO novoItem = malloc(sizeof(celulaLO));
     temp = inicio;
     anterior = NULL;
-    while(temp != NULL && strcmp(key, temp->bob.palavra) < 0){
+    /*primeiro devemos verificar se a lista esta vazia.
+     */
+    if(!inicio){
+        inicio = malloc(sizeof(celulaLO));
+        inicio->bob.palavra = malloc(strlen(key)*sizeof(char));
+        strcpy(inicio->bob.palavra, key);
+        inicio->bob.freq = 1;
+        inicio->next = NULL;
+        return inicio;
+    }
+    /*agora iremos procurar o iten desejado na lista e mudar sua frequencia se
+     *ele estiver presente na lista.
+     */
+    while(temp != NULL && strcmp(key, temp->bob.palavra) >= 0){
+        if(!strcmp(key, temp->bob.palavra)){
+            temp->bob.freq++;
+            return(inicio);
+        }
         anterior = temp;
         temp = temp->next;
-    }
-    /*primeiro vamos verificar se a palavra já se encontra na tabela.
-     */
-    if(!strcmp(key, temp->bob.palavra)){
-        temp->bob.freq++;
-        return(inicio);
     }
     novoItem->bob.palavra = malloc(strlen(key)*sizeof(char));
     strcpy(novoItem->bob.palavra, key);
     novoItem->bob.freq = 1;
     novoItem->next = temp;
-    /*vamos verificar se a tabela esta vazia ou se devemos inserir no começo.
+    /* Agora vamos verificar se temos que mudar o inicio da lista.
      */
-    if(temp == NULL){
+    if(anterior == NULL){
         inicio = novoItem;
         return(inicio);
     }
-    /*se não for o caso anterior existe e devemos ligar ele ao novoItem,
-     *retornado o inicio original*/
     anterior->next = novoItem;
     return(inicio);
 }
