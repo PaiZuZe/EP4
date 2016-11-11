@@ -1,6 +1,5 @@
 #include<stdlib.h>
 #include<myHeader.h>
-#include<stdio.h>
 Buffer *criaBuffer()
 {
     Buffer *B = malloc(sizeof(Buffer));

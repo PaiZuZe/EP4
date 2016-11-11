@@ -1,7 +1,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_LO.h"
-#include<stdio.h>
+
 apontadorLO criaStableLO()
 {
     apontadorLO inicio = NULL;

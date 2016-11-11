@@ -1,7 +1,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_LD.h"
-#include <stdio.h>
 
 apontadorLD criaStableLD()
 {

@@ -47,10 +47,11 @@ void imprimeLO_A(apontadorLO stable)
 void imprimeAB_A(apontadorAB stable)
 {
     if (stable == NULL) return;
-    imprimeAB_A(stable);
+    imprimeAB_A(stable->esq);
     printf("%s ", stable->bob.palavra);
     printf("%d\n", stable->bob.freq);
-    imprimeAB_A(stable);
+    imprimeAB_A(stable->dir);
+    return;
 }
 
 
