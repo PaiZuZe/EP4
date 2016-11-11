@@ -20,7 +20,7 @@ apontadorAB criaStableAB();
 /*esta função recebe o inicio de uma ABB e destroi uma tabela de simbolos que
  *usa uma arvore de busca binaria.
  */
-void destroiStableLO(apontadorAB inicio);
+void destroiStableAB(apontadorAB inicio);
 /*esta função recebe o começo de uma ABB e uma string, a função ira percorrer a
  *ABB e ira adicionar a string na arvore, se a string ja se encontrar nela, so
  *sua frequencia ira mudar, a função devolve a começo da arvore.

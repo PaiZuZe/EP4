@@ -7,6 +7,7 @@
 #include"tabelaSimbolo_VO.h"
 #include"tabelaSimbolo_LD.h"
 #include"tabelaSimbolo_LO.h"
+#include"tabelaSimbolo_AB.h"
 void imprimeVD_A(stableVD *stable)
 {
     int i;
@@ -42,6 +43,14 @@ void imprimeLO_A(apontadorLO stable)
         printf("%d\n", i->bob.freq);
     }
     return;
+}
+void imprimeAB_A(apontadorAB stable)
+{
+    if (stable == NULL) return;
+    imprimeAB_A(stable);
+    printf("%s ", stable->bob.palavra);
+    printf("%d\n", stable->bob.freq);
+    imprimeAB_A(stable);
 }
 
 
@@ -161,6 +170,35 @@ void tabelaLO(char *arquivoTxt, char *tipoOrd){
     }
     return;
 }
+void tabelaAB(char *arquivoTxt, char *tipoOrd){
+    int caracter;
+    apontadorAB stable;
+    FILE *arquivo;
+    Buffer *word;
+    arquivo = fopen(arquivoTxt, "r");
+    word = criaBuffer();
+    stable = criaStableAB();
+    while(!feof(arquivo)){
+        caracter = fgetc(arquivo);
+        while(!isalpha(caracter) && !feof(arquivo))
+            caracter = fgetc(arquivo);
+        while(isalnum(caracter)){
+            caracter = tolower(caracter);
+            adicionaNoBuffer(word, caracter);
+            caracter = fgetc(arquivo);
+        }
+        adicionaNoBuffer(word, 0);
+        stable = insereStableAB(word->palavra, stable);
+        clearBuffer(word);
+    }
+    /*agora temos todas aspalavras do texto na table, basta imprimila como
+     *desejado.
+     */
+    if(!strcmp(tipoOrd, "A")){
+        imprimeAB_A(stable);
+    }
+    return;
+}
 
 int main(int argc, char *argv[])
 {
@@ -202,7 +240,7 @@ int main(int argc, char *argv[])
     }
     else if(strcmp(argv[2], "AB") == 0){
         if(strcmp(argv[3], "A") == 0 || strcmp(argv[3], "O") == 0){
-            printf("yay\n");
+            tabelaAB(argv[1], argv[3]);
         }
         else{
             printf("Argumento tipo de ordenação não é valido\n");

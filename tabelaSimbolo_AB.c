@@ -10,11 +10,11 @@ apontadorAB criaStableAB()
     return inicio;
 }
 
-void destroiStableLO(apontadorAB inicio)
+void destroiStableAB(apontadorAB inicio)
 {
-    if(inicio = NULL) return;
-    if(inicio->esq != NULL) destroiStableLO(inicio->esq);
-    if(inicio->dir != NULL) destroiStableLO(inicio->dir);
+    if(inicio == NULL) return;
+    if(inicio->esq != NULL) destroiStableAB(inicio->esq);
+    if(inicio->dir != NULL) destroiStableAB(inicio->dir);
     free(inicio);
     return;
 }
@@ -24,7 +24,7 @@ apontadorAB insereStableAB(char *key, apontadorAB inicio)
     /*vamos primeiro verificar se a lista esta vazia.
      */
     if(!inicio){
-        srtcpy(inicio->bob.palavra, key);
+        strcpy(inicio->bob.palavra, key);
         inicio->bob.freq = 1;
         inicio->dir = NULL;
         inicio->esq = NULL;
