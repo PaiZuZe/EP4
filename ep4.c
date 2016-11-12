@@ -11,12 +11,24 @@
 void imprimeVD_A(stableVD *stable)
 {
     int i;
+    mergeSortVDstring(0, stable->ultPos, stable);
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
     }
     return;
 }
+void imprimeVD_O(stableVD *stable)
+{
+    int i;
+    mergeSortVDfreq(0, stable->ultPos, stable);
+    for(i = 0; i < stable->ultPos; i++){
+        printf("%s ", stable->info[i].palavra);
+        printf("%d\n", stable->info[i].freq);
+    }
+    return;
+}
+
 void imprimeVO_A(stableVO *stable)
 {
     int i;
@@ -133,6 +145,7 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
         if(!strcmp(tipoOrd, "A")){
             imprimeVD_A(stableVD);
         }
+        else imprimeVD_O(stableVD);
     }
     return;
 }

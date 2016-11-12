@@ -11,7 +11,13 @@ typedef struct{
                 int max;
                 } stableVD;
 
+void mergeSortVDstring(int inicio, int fim, stableVD *stable);
 
+void mergeVDstring(int inicio, int meio, int fim, stableVD *stable);
+
+void mergeSortVDfreq(int inicio, int fim, stableVD *stable);
+
+void mergeVDfreq(int inicio, int meio, int fim, stableVD *stable);
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
  *usa um vetor desordenado.
  */
