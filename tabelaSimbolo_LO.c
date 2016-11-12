@@ -13,7 +13,7 @@ void destroiStableLO(apontadorLO inicio)
     apontadorLO prox;
     while(inicio != NULL){
         prox = inicio->next;
-        free(inicio->bob.palavra);
+        free(inicio->info.palavra);
         free(inicio);
         inicio = prox;
     }
@@ -30,26 +30,26 @@ apontadorLO insereStableLO(char *key ,apontadorLO inicio)
      */
     if(!inicio){
         inicio = malloc(sizeof(celulaLO));
-        inicio->bob.palavra = malloc(strlen(key)*sizeof(char));
-        strcpy(inicio->bob.palavra, key);
-        inicio->bob.freq = 1;
+        inicio->info.palavra = malloc(strlen(key)*sizeof(char));
+        strcpy(inicio->info.palavra, key);
+        inicio->info.freq = 1;
         inicio->next = NULL;
         return inicio;
     }
     /*agora iremos procurar o iten desejado na lista e mudar sua frequencia se
      *ele estiver presente na lista.
      */
-    while(temp != NULL && strcmp(key, temp->bob.palavra) >= 0){
-        if(!strcmp(key, temp->bob.palavra)){
-            temp->bob.freq++;
+    while(temp != NULL && strcmp(key, temp->info.palavra) >= 0){
+        if(!strcmp(key, temp->info.palavra)){
+            temp->info.freq++;
             return(inicio);
         }
         anterior = temp;
         temp = temp->next;
     }
-    novoItem->bob.palavra = malloc(strlen(key)*sizeof(char));
-    strcpy(novoItem->bob.palavra, key);
-    novoItem->bob.freq = 1;
+    novoItem->info.palavra = malloc(strlen(key)*sizeof(char));
+    strcpy(novoItem->info.palavra, key);
+    novoItem->info.freq = 1;
     novoItem->next = temp;
     /* Agora vamos verificar se temos que mudar o inicio da lista.
      */

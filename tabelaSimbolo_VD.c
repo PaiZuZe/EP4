@@ -7,7 +7,7 @@ stableVD *criaStableVD()
     stableVD *stable = malloc(sizeof(stableVD));
     stable->max = 16;
     stable->ultPos = 0;
-    stable->bob = malloc(stable->max*sizeof(dataVD));
+    stable->info = malloc(stable->max*sizeof(dataVD));
     return(stable);
 }
 
@@ -15,8 +15,8 @@ void destroiStableVD(stableVD *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++)
-        free(stable->bob[i].palavra);
-    free(stable->bob);
+        free(stable->info[i].palavra);
+    free(stable->info);
     free(stable);
     return;
 }
@@ -25,8 +25,8 @@ stableVD *insereStableVD(char *key, stableVD *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++){
-        if(!strcmp(key,stable->bob[i].palavra)){
-            stable->bob[i].freq++;
+        if(!strcmp(key,stable->info[i].palavra)){
+            stable->info[i].freq++;
             return stable;
         }
     }
@@ -37,9 +37,9 @@ stableVD *insereStableVD(char *key, stableVD *stable)
     /*como a tabela tem espaço para a palavra nova e ela não estava na lista
      *simplesmente podemos mudar a frequencia para um adicionar a palavra
      */
-    stable->bob[i].palavra = malloc(strlen(key)*sizeof(char));
-    strcpy(stable->bob[i].palavra,key);
-    stable->bob[i].freq = 1;
+    stable->info[i].palavra = malloc(strlen(key)*sizeof(char));
+    strcpy(stable->info[i].palavra,key);
+    stable->info[i].freq = 1;
     stable->ultPos++;
     return stable;
 }
@@ -51,14 +51,14 @@ stableVD *realocaStableVD(stableVD *stable)
     stableNova = malloc(sizeof(stableVD));
     stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
-    stableNova->bob = malloc(stableNova->max*sizeof(dataVD));
+    stableNova->info = malloc(stableNova->max*sizeof(dataVD));
     /*ao dobrarmos o tamanho garantimos que não iremos fazer essa operação
      *muitas vezes
      */
     for(i = 0; i < stable->ultPos; i++){
-        stableNova->bob[i].freq = stable->bob[i].freq;
-        stableNova->bob[i].palavra = malloc(strlen(stable->bob[i].palavra)*sizeof(char));
-        strcpy(stableNova->bob[i].palavra, stable->bob[i].palavra);
+        stableNova->info[i].freq = stable->info[i].freq;
+        stableNova->info[i].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
+        strcpy(stableNova->info[i].palavra, stable->info[i].palavra);
     }
     destroiStableVD(stable);
     return(stableNova);

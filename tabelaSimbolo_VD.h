@@ -6,7 +6,7 @@ typedef struct{
                 int freq;
                 } dataVD;
 typedef struct{
-                dataVD *bob;
+                dataVD *info;
                 int ultPos;
                 int max;
                 } stableVD;

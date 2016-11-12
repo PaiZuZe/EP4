@@ -6,7 +6,7 @@ typedef struct{
                 int freq;
                 } dataLO;
 typedef struct noLO {
-                    dataLO bob;
+                    dataLO info;
                     struct noLO *next;
                     }celulaLO;
 

@@ -23,27 +23,27 @@ apontadorAB insereStableAB(char *key, apontadorAB inicio)
      */
     if(!inicio){
         inicio = malloc(sizeof(celulaAB));
-        inicio->bob.palavra = malloc(strlen(key)*sizeof(char));
-        strcpy(inicio->bob.palavra, key);
-        inicio->bob.freq = 1;
+        inicio->info.palavra = malloc(strlen(key)*sizeof(char));
+        strcpy(inicio->info.palavra, key);
+        inicio->info.freq = 1;
         inicio->dir = NULL;
         inicio->esq = NULL;
         return inicio;
     }
     /*vamos verificar se achamos a palavra.
      */
-    if(!strcmp(key, inicio->bob.palavra)){
-        inicio->bob.freq++;
+    if(!strcmp(key, inicio->info.palavra)){
+        inicio->info.freq++;
         return inicio;
     }
     /*agora iremos chamar recursivamente a função para a esquerda ou direita
      *dependendo da key.
      */
-    if(strcmp(key, inicio->bob.palavra) < 0){
+    if(strcmp(key, inicio->info.palavra) < 0){
         inicio->esq = insereStableAB(key, inicio->esq);
         return inicio;
     }
-    else if(strcmp(key, inicio->bob.palavra) > 0){
+    else if(strcmp(key, inicio->info.palavra) > 0){
         inicio->dir = insereStableAB(key, inicio->dir);
     }
     return inicio;

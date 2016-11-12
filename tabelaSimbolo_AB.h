@@ -6,7 +6,7 @@ typedef struct{
                 } dataAB;
 
 typedef struct noAB{
-                dataAB bob;
+                dataAB info;
                 struct noAB *esq;
                 struct noAB *dir;
                 } celulaAB;
