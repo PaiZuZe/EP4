@@ -38,6 +38,16 @@ void imprimeVO_A(stableVO *stable)
     }
     return;
 }
+void imprimeVO_O(stableVO *stable)
+{
+    int i;
+    mergeSortVOfreq(0, stable->ultPos, stable);
+    for(i = 0; i < stable->ultPos; i++){
+        printf("%s ", stable->info[i].palavra);
+        printf("%d\n", stable->info[i].freq);
+    }
+    return;
+}
 void imprimeLD_A(apontadorLD stable)
 {
     apontadorLD i;
@@ -140,6 +150,7 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
         if(!strcmp(tipoOrd, "A")){
             imprimeVO_A(stableVO);
         }
+        else imprimeVO_O(stableVO);
     }
     else if(!strcmp(tipoTabela, "VD")){
         if(!strcmp(tipoOrd, "A")){

@@ -2,6 +2,63 @@
 #include<string.h>
 #include"tabelaSimbolo_VO.h"
 
+void mergeSortVOfreq(int inicio, int fim, stableVO *stable)
+{
+    int meio;
+    if (inicio < fim - 1) {
+        meio = (inicio + fim)/2;
+        mergeSortVOfreq(inicio, meio, stable);
+        mergeSortVOfreq(meio, fim, stable);
+        mergeVOfreq(inicio, meio, fim, stable);
+    }
+}
+
+void mergeVOfreq(int inicio, int meio, int fim, stableVO *stable)
+{
+    int i, j, k;
+    dataVO *w;
+    w = malloc ((fim - inicio) * sizeof (dataVO));
+    i = inicio; j = meio;
+    k = 0;
+    while (i < meio && j < fim) {
+        if (stable->info[i].freq <=  stable->info[j].freq){
+            w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
+            strcpy(w[k].palavra, stable->info[i].palavra);
+            w[k].freq = stable->info[i].freq;
+            k++;
+            i++;
+        }
+        else{
+            w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
+            strcpy(w[k].palavra, stable->info[j].palavra);
+            w[k].freq = stable->info[j].freq;
+            k++;
+            j++;
+        }
+    }
+    while (i < meio){
+        w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
+        strcpy(w[k].palavra, stable->info[i].palavra);
+        w[k].freq = stable->info[i].freq;
+        k++;
+        i++;
+    }
+
+    while (j < fim){
+        w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
+        strcpy(w[k].palavra, stable->info[j].palavra);
+        w[k].freq = stable->info[j].freq;
+        k++;
+        j++;
+    }
+    for (i = inicio; i < fim; ++i){
+        stable->info[i].palavra = malloc(strlen(w[i - inicio].palavra)*sizeof(char));
+        strcpy(stable->info[i].palavra, w[i - inicio].palavra);
+        stable->info[i].freq = w[i - inicio].freq;
+    }
+    free (w);
+}
+
 stableVO *criaStableVO()
 {
     stableVO *stable = malloc(sizeof(stableVO));

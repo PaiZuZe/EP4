@@ -11,7 +11,9 @@ typedef struct{
                 int max;
                 } stableVO;
 
+void mergeSortVOfreq(int inicio, int fim, stableVO *stable);
 
+void mergeVOfreq(int inicio, int meio, int fim, stableVO *stable);
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
 *usa um vetor ordenado.
  */
