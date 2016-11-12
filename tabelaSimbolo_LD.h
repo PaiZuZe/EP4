@@ -12,6 +12,14 @@ typedef struct noLD {
 
 typedef celulaLD *apontadorLD;
 
+int nElementosLD(apontadorLD inicio);
+
+dataLD *LDtoVD(apontadorLD inicio);
+
+void mergeSortLD(int inicio, int fim, dataLD *V, char *tipoOrd);
+
+void mergeLD(int inicio, int meio, int fim, dataLD *V, char *tipoOrd);
+
 /*função cria uma variavel com o começo da lista.
  */
 apontadorLD criaStableLD();

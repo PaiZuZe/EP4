@@ -12,6 +12,13 @@ typedef struct noLO {
 
 typedef celulaLO *apontadorLO;
 
+int nElementosLO(apontadorLO inicio);
+
+dataLO *LOtoVD(apontadorLO inicio);
+
+void mergeSortLO(int inicio, int fim, dataLO *V, char *tipoOrd);
+
+void mergeLO(int inicio, int meio, int fim, dataLO *V, char *tipoOrd);
 
 /*função cria uma variavel com o começo da lista.
  */

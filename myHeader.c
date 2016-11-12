@@ -18,7 +18,7 @@ void realocaBuffer(Buffer *B)
     for(i = 0; i < B->max; i++)
         novoBuffer->palavra[i] = B->palavra[i];
     free(B->palavra);
-    B->max = B->max;
+    B->max = novoBuffer->max;
     B->palavra = novoBuffer->palavra;
     return;
 }

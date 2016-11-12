@@ -21,7 +21,7 @@ void mergeVD(int inicio, int meio, int fim, stableVD *stable, char *tipoOrd)
     i = inicio; j = meio;
     k = 0;
     while (i < meio && j < fim) {
-        if(strcmp(tipoOrd, "A")){
+        if(!strcmp(tipoOrd, "A")){
             if (strcmp(stable->info[i].palavra,stable->info[j].palavra) <= 0){
                 w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
                 strcpy(w[k].palavra, stable->info[i].palavra);
@@ -80,7 +80,7 @@ void mergeVD(int inicio, int meio, int fim, stableVD *stable, char *tipoOrd)
 stableVD *criaStableVD()
 {
     stableVD *stable = malloc(sizeof(stableVD));
-    stable->max = 16;
+    stable->max = 8;
     stable->ultPos = 0;
     stable->info = malloc(stable->max*sizeof(dataVD));
     return(stable);

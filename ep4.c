@@ -50,10 +50,25 @@ void imprimeVO_O(stableVO *stable)
 }
 void imprimeLD_A(apontadorLD stable)
 {
-    apontadorLD i;
-    for(i = stable; i != NULL; i = i->next){
-        printf("%s ", i->info.palavra);
-        printf("%d\n", i->info.freq);
+    int i;
+    dataLD *V;
+    V = LDtoVD(stable);
+    mergeSortLD(0, nElementosLD(stable), V, "A");
+    for(i = 0; i < nElementosLD(stable); i++){
+        printf("%s ", V[i].palavra);
+        printf("%d\n", V[i].freq);
+    }
+    return;
+}
+void imprimeLD_O(apontadorLD stable)
+{
+    int i;
+    dataLD *V;
+    V = LDtoVD(stable);
+    mergeSortLD(0, nElementosLD(stable), V, "O");
+    for(i = 0; i < nElementosLD(stable); i++){
+        printf("%s ", V[i].palavra);
+        printf("%d\n", V[i].freq);
     }
     return;
 }
@@ -63,6 +78,18 @@ void imprimeLO_A(apontadorLO stable)
     for(i = stable; i != NULL; i = i->next){
         printf("%s ", i->info.palavra);
         printf("%d\n", i->info.freq);
+    }
+    return;
+}
+void imprimeLO_O(apontadorLO stable)
+{
+    int i;
+    dataLO *V;
+    V = LOtoVD(stable);
+    mergeSortLO(0, nElementosLO(stable), V, "O");
+    for(i = 0; i < nElementosLO(stable); i++){
+        printf("%s ", V[i].palavra);
+        printf("%d\n", V[i].freq);
     }
     return;
 }
@@ -137,25 +164,19 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
         }
     }
     else if(!strcmp(tipoTabela, "LO")){
-        if(!strcmp(tipoOrd, "A")){
-            imprimeLO_A(stableLO);
-        }
+        if(!strcmp(tipoOrd, "A")) imprimeLO_A(stableLO);
+        else imprimeLO_O(stableLO);
     }
     else if(!strcmp(tipoTabela, "LD")){
-        if(!strcmp(tipoOrd, "A")){
-            imprimeLD_A(stableLD);
-        }
+        if(!strcmp(tipoOrd, "A")) imprimeLD_A(stableLD);
+        else imprimeLD_O(stableLD);
     }
     else if(!strcmp(tipoTabela, "VO")){
-        if(!strcmp(tipoOrd, "A")){
-            imprimeVO_A(stableVO);
-        }
+        if(!strcmp(tipoOrd, "A")) imprimeVO_A(stableVO);
         else imprimeVO_O(stableVO);
     }
     else if(!strcmp(tipoTabela, "VD")){
-        if(!strcmp(tipoOrd, "A")){
-            imprimeVD_A(stableVD);
-        }
+        if(!strcmp(tipoOrd, "A")) imprimeVD_A(stableVD);
         else imprimeVD_O(stableVD);
     }
     return;
@@ -167,7 +188,7 @@ int main(int argc, char *argv[])
     /*primeiro devemos ver se temos todos os argumentos nescessarios.
      */
     if(argv[3] == NULL){
-        printf("ERRO, falta algum argumento\n");
+        printf("ERRO, falta de argumento\n");
         return 1;
     }
     /*agora iremos comparar os argumentos dados com os esperados, a função strcmp
