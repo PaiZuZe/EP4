@@ -11,7 +11,7 @@
 void imprimeVD_A(stableVD *stable)
 {
     int i;
-    mergeSortVDstring(0, stable->ultPos, stable);
+    mergeSortVD(0, stable->ultPos, stable, "A");
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
@@ -21,7 +21,7 @@ void imprimeVD_A(stableVD *stable)
 void imprimeVD_O(stableVD *stable)
 {
     int i;
-    mergeSortVDfreq(0, stable->ultPos, stable);
+    mergeSortVD(0, stable->ultPos, stable, "O");
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
