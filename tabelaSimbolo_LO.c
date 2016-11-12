@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_LO.h"
@@ -96,7 +97,33 @@ void mergeLO(int inicio, int meio, int fim, dataLO *V, char *tipoOrd)
     }
     free (w);
 }
-
+void imprimeLO_A(apontadorLO stable)
+{
+    apontadorLO i;
+    /*como a tabela já esta ordenada só iremos imprimir seus elemntos na ordem
+     *que eles se encontram.
+     */
+    for(i = stable; i != NULL; i = i->next){
+        printf("%s ", i->info.palavra);
+        printf("%d\n", i->info.freq);
+    }
+    return;
+}
+void imprimeLO_O(apontadorLO stable)
+{
+    int i;
+    dataLO *V;
+    /*como ordenar uma lista ligada é muito dificil iremos criar um vetor com
+     *os elementos da tabela e ordenalo em NlogN.
+     */
+    V = LOtoVD(stable);
+    mergeSortLO(0, nElementosLO(stable), V, "O");
+    for(i = 0; i < nElementosLO(stable); i++){
+        printf("%s ", V[i].palavra);
+        printf("%d\n", V[i].freq);
+    }
+    return;
+}
 apontadorLO criaStableLO()
 {
     apontadorLO inicio = NULL;
@@ -146,7 +173,7 @@ apontadorLO insereStableLO(char *key ,apontadorLO inicio)
     strcpy(novoItem->info.palavra, key);
     novoItem->info.freq = 1;
     novoItem->next = temp;
-    /* Agora vamos verificar se temos que mudar o inicio da lista.
+    /*Agora vamos verificar se temos que mudar o inicio da lista.
      */
     if(anterior == NULL){
         inicio = novoItem;

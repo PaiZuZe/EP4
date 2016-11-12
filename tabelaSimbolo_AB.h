@@ -13,6 +13,10 @@ typedef struct noAB{
 
 typedef celulaAB *apontadorAB;
 
+/*função recursiva que recebe uma tabela de simbolo que usa ABB's e imprime ela
+ *em ordem alfabetica.
+ */
+void imprimeAB_A(apontadorAB stable);
 /*cria uma tabela de simbolos usando arvore de busca binaria, a função devolve
  *o inicio desta arvore.
  */

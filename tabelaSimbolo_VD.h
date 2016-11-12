@@ -11,10 +11,22 @@ typedef struct{
                 int max;
                 } stableVD;
 
+/*esta é uma função de mergeSort que ira ordenar um vetor de uma struct, a
+ *ordenção ira depender da variavel tipoOrd(pode ser por frequencia ou
+ *alfabeticamente).
+ */
 void mergeSortVD(int inicio, int fim, stableVD *stable, char *tipoOrd);
-
+/*função de merge modificada.
+ */
 void mergeVD(int inicio, int meio, int fim, stableVD *stable, char *tipoOrd);
-
+/*esta função recebe uma tabela de simbolos feita com vetor dinamico e a imprime
+ *na saida padrão em ordem alfabetica.
+ */
+void imprimeVD_A(stableVD *stable);
+/*esta função recebe uma tabela de simbolos feita com vetor dinamico e a imprime
+ *na saida padrão em ordem de frequencia.
+ */
+void imprimeVD_O(stableVD *stable);
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
  *usa um vetor desordenado.
  */

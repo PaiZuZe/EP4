@@ -11,9 +11,21 @@ typedef struct{
                 int max;
                 } stableVO;
 
+/*esta é uma função de mergeSort que ira ordenar um vetor de uma struct, a
+ *ordenação é por frequencia.
+ */
 void mergeSortVOfreq(int inicio, int fim, stableVO *stable);
-
+/*função de merge modificada.
+ */
 void mergeVOfreq(int inicio, int meio, int fim, stableVO *stable);
+/*esta função recebe uma tabela de simbolos feita com vetor dinamico e a imprime
+ *na saida padrão em ordem de frequencia.
+ */
+void imprimeVO_A(stableVO *stable);
+/*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
+ *usa um vetor desordenado.
+ */
+void imprimeVO_O(stableVO *stable);
 /*Função que ira criar e devolver um ponteiro para uma tabela de simbolos que
 *usa um vetor ordenado.
  */

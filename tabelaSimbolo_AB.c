@@ -1,6 +1,17 @@
+#include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_AB.h"
+
+void imprimeAB_A(apontadorAB stable)
+{
+    if (stable == NULL) return;
+    imprimeAB_A(stable->esq);
+    printf("%s ", stable->info.palavra);
+    printf("%d\n", stable->info.freq);
+    imprimeAB_A(stable->dir);
+    return;
+}
 
 apontadorAB criaStableAB()
 {

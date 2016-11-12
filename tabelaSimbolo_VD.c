@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_VD.h"
@@ -76,7 +77,26 @@ void mergeVD(int inicio, int meio, int fim, stableVD *stable, char *tipoOrd)
     }
     free (w);
 }
-
+void imprimeVD_A(stableVD *stable)
+{
+    int i;
+    mergeSortVD(0, stable->ultPos, stable, "A");
+    for(i = 0; i < stable->ultPos; i++){
+        printf("%s ", stable->info[i].palavra);
+        printf("%d\n", stable->info[i].freq);
+    }
+    return;
+}
+void imprimeVD_O(stableVD *stable)
+{
+    int i;
+    mergeSortVD(0, stable->ultPos, stable, "O");
+    for(i = 0; i < stable->ultPos; i++){
+        printf("%s ", stable->info[i].palavra);
+        printf("%d\n", stable->info[i].freq);
+    }
+    return;
+}
 stableVD *criaStableVD()
 {
     stableVD *stable = malloc(sizeof(stableVD));
@@ -99,18 +119,22 @@ void destroiStableVD(stableVD *stable)
 stableVD *insereStableVD(char *key, stableVD *stable)
 {
     int i;
+    /*primeiro iremos procurar se o elemto se encontra na lista e mudar sua
+     *frequencia se nescessario.
+    */
     for(i = 0; i < stable->ultPos; i++){
         if(!strcmp(key,stable->info[i].palavra)){
             stable->info[i].freq++;
             return stable;
         }
     }
-    /*antes de inserirmos a palavra pode ser que a tabela esteja cheia*/
+    /*antes de inserirmos a palavra pode ser que a tabela esteja cheia.
+    */
     if(stable->ultPos == stable->max){
         stable = realocaStableVD(stable);
     }
     /*como a tabela tem espaço para a palavra nova e ela não estava na lista
-     *simplesmente podemos mudar a frequencia para um adicionar a palavra
+     *simplesmente podemos adicionar a palavra no final da tabela.
      */
     stable->info[i].palavra = malloc(strlen(key)*sizeof(char));
     strcpy(stable->info[i].palavra,key);

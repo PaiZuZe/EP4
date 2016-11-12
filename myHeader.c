@@ -24,8 +24,9 @@ void realocaBuffer(Buffer *B)
 }
 void adicionaNoBuffer(Buffer *B, char c)
 {
-    if(B->top == B->max)
-        realocaBuffer(B);
+    /*antes de adicionadar no buffer presisamos ver se ele esta cheio.
+     */
+    if(B->top == B->max) realocaBuffer(B);
     B->palavra[B->top] = c;
     B->top++;
     return;
@@ -38,6 +39,8 @@ void destroiBuffer(Buffer *B)
 }
 void clearBuffer(Buffer *B)
 {
+    /*para "resetar" o buffer só é nescessario mudar o seu topo para 0.
+     */
     B->top = 0;
     return;
 }

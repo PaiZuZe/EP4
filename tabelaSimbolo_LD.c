@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"tabelaSimbolo_LD.h"
@@ -95,8 +96,36 @@ void mergeLD(int inicio, int meio, int fim, dataLD *V, char *tipoOrd)
     }
     free (w);
 }
-
-
+void imprimeLD_A(apontadorLD stable)
+{
+    int i;
+    dataLD *V;
+    /*como ordenar uma lista ligada é muito dificil iremos criar um vetor com
+     *os elementos da tabela e ordenalo em NlogN.
+     */
+    V = LDtoVD(stable);
+    mergeSortLD(0, nElementosLD(stable), V, "A");
+    for(i = 0; i < nElementosLD(stable); i++){
+        printf("%s ", V[i].palavra);
+        printf("%d\n", V[i].freq);
+    }
+    return;
+}
+void imprimeLD_O(apontadorLD stable)
+{
+    int i;
+    dataLD *V;
+    /*como ordenar uma lista ligada é muito dificil iremos criar um vetor com
+     *os elementos da tabela e ordenalo em NlogN.
+     */
+    V = LDtoVD(stable);
+    mergeSortLD(0, nElementosLD(stable), V, "O");
+    for(i = 0; i < nElementosLD(stable); i++){
+        printf("%s ", V[i].palavra);
+        printf("%d\n", V[i].freq);
+    }
+    return;
+}
 apontadorLD criaStableLD()
 {
     apontadorLD inicio = NULL;
@@ -130,12 +159,15 @@ apontadorLD insereStableLD(char *key ,apontadorLD inicio)
     anterior = NULL;
     for(temp = inicio; temp != NULL; anterior = temp, temp = temp->next){
         if(!strcmp(key, temp->info.palavra)){
+            /*strcmp retorna 0 se duas strings forem iguais, assim basta
+             *aumentar a frequencia e sair da função.
+             */
             temp->info.freq++;
             return inicio;
         }
     }
     /*se a função chegou até este ponto, percorremos a tabela inteira sem
-     *encontar a palavra, assim a iremos inserir no final.
+     *encontar a palavra, assim a iremos inserir a nova palavra no final.
      */
     novoItem = malloc(sizeof(celulaLD));
     novoItem->info.palavra = malloc(strlen(key)*sizeof(char));
@@ -145,4 +177,3 @@ apontadorLD insereStableLD(char *key ,apontadorLD inicio)
     anterior->next = novoItem;
     return inicio;
 }
-/**/
