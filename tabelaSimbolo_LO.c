@@ -1,20 +1,19 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"myHeader.h"
 #include"tabelaSimbolo_LO.h"
-
-int nElementosLO(apontadorLO inicio)
+int nElementosLO(apontadorLG inicio)
 {
     int j;
-    apontadorLO i;
+    apontadorLG i;
     for(i = inicio, j = 0; i != NULL; i = i->next, j++);
     return j;
 }
 
-data *LOtoVD(apontadorLO inicio){
+data *LOtoVD(apontadorLG inicio){
     int j;
-    apontadorLO i;
+    apontadorLG i;
     data *V = NULL;
     V = malloc(nElementosLO(inicio)*sizeof(data));
     for(i = inicio, j = 0; i != NULL; i = i->next, j++){
@@ -24,9 +23,9 @@ data *LOtoVD(apontadorLO inicio){
     }
     return V;
 }
-void imprimeLO_A(apontadorLO stable)
+void imprimeLO_A(apontadorLG stable)
 {
-    apontadorLO i;
+    apontadorLG i;
     /*como a tabela já esta ordenada só iremos imprimir seus elemntos na ordem
      *que eles se encontram.
      */
@@ -36,7 +35,7 @@ void imprimeLO_A(apontadorLO stable)
     }
     return;
 }
-void imprimeLO_O(apontadorLO stable)
+void imprimeLO_O(apontadorLG stable)
 {
     int i;
     data *V;
@@ -51,15 +50,15 @@ void imprimeLO_O(apontadorLO stable)
     }
     return;
 }
-apontadorLO criaStableLO()
+apontadorLG criaStableLO()
 {
-    apontadorLO inicio = NULL;
+    apontadorLG inicio = NULL;
     return(inicio);
 }
 
-void destroiStableLO(apontadorLO inicio)
+void destroiStableLO(apontadorLG inicio)
 {
-    apontadorLO prox;
+    apontadorLG prox;
     while(inicio != NULL){
         prox = inicio->next;
         free(inicio->info.palavra);
@@ -69,16 +68,16 @@ void destroiStableLO(apontadorLO inicio)
     return;
 }
 
-apontadorLO insereStableLO(char *key ,apontadorLO inicio)
+apontadorLG insereStableLO(char *key ,apontadorLG inicio)
 {
-    apontadorLO temp, anterior;
-    apontadorLO novoItem = malloc(sizeof(celulaLO));
+    apontadorLG temp, anterior;
+    apontadorLG novoItem = malloc(sizeof(celulaLG));
     temp = inicio;
     anterior = NULL;
     /*primeiro devemos verificar se a lista esta vazia.
      */
     if(!inicio){
-        inicio = malloc(sizeof(celulaLO));
+        inicio = malloc(sizeof(celulaLG));
         inicio->info.palavra = malloc(strlen(key)*sizeof(char));
         strcpy(inicio->info.palavra, key);
         inicio->info.freq = 1;

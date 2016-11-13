@@ -11,16 +11,16 @@
 
 void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     int caracter;
-    /*as tabelas são iniciadas como NULL para evitar uma mensagem de warning.
-     */
     apontadorAB stableAB, stableABf;
-    apontadorLO stableLO = NULL;
-    apontadorLD stableLD = NULL;
-    stableV *stableVO = NULL;
-    stableV *stableVD = NULL;
+    apontadorLG stableLO, stableLD;
+    stableV *stableVO, *stableVD;
     FILE *arquivo;
     Buffer *word;
+    /*as tabelas são iniciadas como NULL para evitar uma mensagem de warning.
+    */
     stableAB = stableABf = NULL;
+    stableVO = stableVD = NULL;
+    stableLO = stableLD = NULL;
     arquivo = fopen(arquivoTxt, "r");
     word = criaBuffer();
     if(!strcmp(tipoTabela, "AB") && !strcmp(tipoOrd, "O"))  stableABf = criaStableAB();

@@ -1,19 +1,19 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"myHeader.h"
 #include"tabelaSimbolo_LD.h"
-int nElementosLD(apontadorLD inicio)
+int nElementosLD(apontadorLG inicio)
 {
     int j;
-    apontadorLD i;
+    apontadorLG i;
     for(i = inicio, j = 0; i != NULL; i = i->next, j++);
     return j;
 }
 
-data *LDtoVD(apontadorLD inicio){
+data *LDtoVD(apontadorLG inicio){
     int j;
-    apontadorLD i;
+    apontadorLG i;
     data *V = NULL;
     V = malloc(nElementosLD(inicio)*sizeof(data));
     for(i = inicio, j = 0; i != NULL; i = i->next, j++){
@@ -23,7 +23,7 @@ data *LDtoVD(apontadorLD inicio){
     }
     return V;
 }
-void imprimeLD_A(apontadorLD stable)
+void imprimeLD_A(apontadorLG stable)
 {
     int i;
     data *V;
@@ -38,7 +38,7 @@ void imprimeLD_A(apontadorLD stable)
     }
     return;
 }
-void imprimeLD_O(apontadorLD stable)
+void imprimeLD_O(apontadorLG stable)
 {
     int i;
     data *V;
@@ -53,14 +53,14 @@ void imprimeLD_O(apontadorLD stable)
     }
     return;
 }
-apontadorLD criaStableLD()
+apontadorLG criaStableLD()
 {
-    apontadorLD inicio = NULL;
+    apontadorLG inicio = NULL;
     return(inicio);
 }
-void destroiStableLD(apontadorLD inicio)
+void destroiStableLD(apontadorLG inicio)
 {
-    apontadorLD prox;
+    apontadorLG prox;
     while(inicio != NULL){
         prox = inicio->next;
         free(inicio->info.palavra);
@@ -69,13 +69,13 @@ void destroiStableLD(apontadorLD inicio)
     }
     return;
 }
-apontadorLD insereStableLD(char *key ,apontadorLD inicio)
+apontadorLG insereStableLD(char *key ,apontadorLG inicio)
 {
-    apontadorLD temp, anterior;
-    apontadorLD novoItem;
+    apontadorLG temp, anterior;
+    apontadorLG novoItem;
     /*primeiro devemos verificar se a lista esta vazia.*/
     if(!inicio){
-        inicio = malloc(sizeof(celulaLD));
+        inicio = malloc(sizeof(celulaLG));
         inicio->info.palavra = malloc(strlen(key)*sizeof(char));
         strcpy(inicio->info.palavra, key);
         inicio->info.freq = 1;
@@ -96,7 +96,7 @@ apontadorLD insereStableLD(char *key ,apontadorLD inicio)
     /*se a função chegou até este ponto, percorremos a tabela inteira sem
      *encontar a palavra, assim a iremos inserir a nova palavra no final.
      */
-    novoItem = malloc(sizeof(celulaLD));
+    novoItem = malloc(sizeof(celulaLG));
     novoItem->info.palavra = malloc(strlen(key)*sizeof(char));
     strcpy(novoItem->info.palavra, key);
     novoItem->info.freq = 1;

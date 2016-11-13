@@ -14,6 +14,12 @@ typedef struct{
                 int ultPos;
                 int max;
                 } stableV;
+typedef struct noLG {
+                    data info;
+                    struct noLG *next;
+                    }celulaLG;
+typedef celulaLG *apontadorLG;
+
 /*esta é uma função de mergeSort que ira ordenar um vetor de uma struct(data), a
  *ordenção ira depender da variavel tipoOrd(pode ser por frequencia ou
  *alfabeticamente).
