@@ -4,110 +4,36 @@
 #include"myHeader.h"
 #include"tabelaSimbolo_VD.h"
 
-void mergeSortVD(int inicio, int fim, stableVD *stable, char *tipoOrd)
-{
-    int meio;
-    if (inicio < fim - 1) {
-        meio = (inicio + fim)/2;
-        mergeSortVD(inicio, meio, stable, tipoOrd);
-        mergeSortVD(meio, fim, stable, tipoOrd);
-        mergeVD(inicio, meio, fim, stable, tipoOrd);
-    }
-}
-
-void mergeVD(int inicio, int meio, int fim, stableVD *stable, char *tipoOrd)
-{
-    int i, j, k;
-    data *w;
-    w = malloc ((fim - inicio) * sizeof (data));
-    i = inicio; j = meio;
-    k = 0;
-    while (i < meio && j < fim) {
-        if(!strcmp(tipoOrd, "A")){
-            if (strcmp(stable->info[i].palavra,stable->info[j].palavra) <= 0){
-                w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
-                strcpy(w[k].palavra, stable->info[i].palavra);
-                w[k].freq = stable->info[i].freq;
-                k++;
-                i++;
-            }
-            else{
-                w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
-                strcpy(w[k].palavra, stable->info[j].palavra);
-                w[k].freq = stable->info[j].freq;
-                k++;
-                j++;
-            }
-        }
-        else{
-            if (stable->info[i].freq <=  stable->info[j].freq){
-                w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
-                strcpy(w[k].palavra, stable->info[i].palavra);
-                w[k].freq = stable->info[i].freq;
-                k++;
-                i++;
-            }
-            else{
-                w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
-                strcpy(w[k].palavra, stable->info[j].palavra);
-                w[k].freq = stable->info[j].freq;
-                k++;
-                j++;
-            }
-        }
-    }
-    while (i < meio){
-        w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
-        strcpy(w[k].palavra, stable->info[i].palavra);
-        w[k].freq = stable->info[i].freq;
-        k++;
-        i++;
-    }
-
-    while (j < fim){
-        w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
-        strcpy(w[k].palavra, stable->info[j].palavra);
-        w[k].freq = stable->info[j].freq;
-        k++;
-        j++;
-    }
-    for (i = inicio; i < fim; ++i){
-        stable->info[i].palavra = malloc(strlen(w[i - inicio].palavra)*sizeof(char));
-        strcpy(stable->info[i].palavra, w[i - inicio].palavra);
-        stable->info[i].freq = w[i - inicio].freq;
-    }
-    free (w);
-}
-void imprimeVD_A(stableVD *stable)
+void imprimeVD_A(stableV *stable)
 {
     int i;
-    mergeSortVD(0, stable->ultPos, stable, "A");
+    mergeSortM(0, stable->ultPos, stable->info, "A");
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
     }
     return;
 }
-void imprimeVD_O(stableVD *stable)
+void imprimeVD_O(stableV *stable)
 {
     int i;
-    mergeSortVD(0, stable->ultPos, stable, "O");
+    mergeSortM(0, stable->ultPos, stable->info, "O");
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
     }
     return;
 }
-stableVD *criaStableVD()
+stableV *criaStableVD()
 {
-    stableVD *stable = malloc(sizeof(stableVD));
+    stableV *stable = malloc(sizeof(stableV));
     stable->max = 8;
     stable->ultPos = 0;
     stable->info = malloc(stable->max*sizeof(data));
     return(stable);
 }
 
-void destroiStableVD(stableVD *stable)
+void destroiStableVD(stableV *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++)
@@ -117,7 +43,7 @@ void destroiStableVD(stableVD *stable)
     return;
 }
 
-stableVD *insereStableVD(char *key, stableVD *stable)
+stableV *insereStableVD(char *key, stableV *stable)
 {
     int i;
     /*primeiro iremos procurar se o elemto se encontra na lista e mudar sua
@@ -144,11 +70,11 @@ stableVD *insereStableVD(char *key, stableVD *stable)
     return stable;
 }
 
-stableVD *realocaStableVD(stableVD *stable)
+stableV *realocaStableVD(stableV *stable)
 {
-    stableVD *stableNova;
+    stableV *stableNova;
     int i;
-    stableNova = malloc(sizeof(stableVD));
+    stableNova = malloc(sizeof(stableV));
     stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
     stableNova->info = malloc(stableNova->max*sizeof(data));

@@ -8,7 +8,20 @@ typedef struct {
 typedef struct{
                 char *palavra;
                 int freq;
-                } data;                
+                } data;
+typedef struct{
+                data *info;
+                int ultPos;
+                int max;
+                } stableV;
+/*esta é uma função de mergeSort que ira ordenar um vetor de uma struct(data), a
+ *ordenção ira depender da variavel tipoOrd(pode ser por frequencia ou
+ *alfabeticamente).
+ */
+void mergeSortM(int inicio, int fim, data *V, char *tipoOrd);
+/*função de merge modificada.
+ */
+void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd);
 /*esta função cria um buffer(vetor dinamico) de char e devolve um ponteiro para
  *o buffer criado.
 */

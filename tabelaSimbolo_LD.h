@@ -16,14 +16,6 @@ int nElementosLD(apontadorLD inicio);
  *vetor com os elementos desta tabela.
  */
 data *LDtoVD(apontadorLD inicio);
-/*esta é uma função de mergeSort que ira ordenar um vetor de uma struct, a
- *ordenção ira depender da variavel tipoOrd(pode ser por frequencia ou
- *alfabeticamente).
- */
-void mergeSortLD(int inicio, int fim, data *V, char *tipoOrd);
-/*função de merge modificada.
- */
-void mergeLD(int inicio, int meio, int fim, data *V, char *tipoOrd);
 /*esta função recebe uma tabela de simbolos feita com lista ligada e a imprime
  *na saida padrão em ordem alfabetica.
  */

@@ -16,8 +16,8 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     apontadorAB stableAB, stableABf;
     apontadorLO stableLO = NULL;
     apontadorLD stableLD = NULL;
-    stableVO *stableVO = NULL;
-    stableVD *stableVD = NULL;
+    stableV *stableVO = NULL;
+    stableV *stableVD = NULL;
     FILE *arquivo;
     Buffer *word;
     stableAB = stableABf = NULL;

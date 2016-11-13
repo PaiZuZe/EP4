@@ -1,5 +1,80 @@
 #include<stdlib.h>
+#include<string.h>
 #include<myHeader.h>
+void mergeSortM(int inicio, int fim, data *V, char *tipoOrd)
+{
+    int meio;
+    if (inicio < fim - 1) {
+        meio = (inicio + fim)/2;
+        mergeSortM(inicio, meio, V, tipoOrd);
+        mergeSortM(meio, fim, V, tipoOrd);
+        mergeM(inicio, meio, fim, V, tipoOrd);
+    }
+}
+
+void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
+{
+    int i, j, k;
+    data *w;
+    w = malloc ((fim - inicio) * sizeof (data));
+    i = inicio; j = meio;
+    k = 0;
+    while (i < meio && j < fim) {
+        if(!strcmp(tipoOrd, "A")){
+            if (strcmp(V[i].palavra,V[j].palavra) <= 0){
+                w[k].palavra = malloc(strlen(V[i].palavra)*sizeof(char));
+                strcpy(w[k].palavra, V[i].palavra);
+                w[k].freq = V[i].freq;
+                k++;
+                i++;
+            }
+            else{
+                w[k].palavra = malloc(strlen(V[j].palavra)*sizeof(char));
+                strcpy(w[k].palavra, V[j].palavra);
+                w[k].freq = V[j].freq;
+                k++;
+                j++;
+            }
+        }
+        else{
+            if (V[i].freq <=  V[j].freq){
+                w[k].palavra = malloc(strlen(V[i].palavra)*sizeof(char));
+                strcpy(w[k].palavra, V[i].palavra);
+                w[k].freq = V[i].freq;
+                k++;
+                i++;
+            }
+            else{
+                w[k].palavra = malloc(strlen(V[j].palavra)*sizeof(char));
+                strcpy(w[k].palavra, V[j].palavra);
+                w[k].freq = V[j].freq;
+                k++;
+                j++;
+            }
+        }
+    }
+    while (i < meio){
+        w[k].palavra = malloc(strlen(V[i].palavra)*sizeof(char));
+        strcpy(w[k].palavra, V[i].palavra);
+        w[k].freq = V[i].freq;
+        k++;
+        i++;
+    }
+
+    while (j < fim){
+        w[k].palavra = malloc(strlen(V[j].palavra)*sizeof(char));
+        strcpy(w[k].palavra, V[j].palavra);
+        w[k].freq = V[j].freq;
+        k++;
+        j++;
+    }
+    for (i = inicio; i < fim; ++i){
+        V[i].palavra = malloc(strlen(w[i - inicio].palavra)*sizeof(char));
+        strcpy(V[i].palavra, w[i - inicio].palavra);
+        V[i].freq = w[i - inicio].freq;
+    }
+    free (w);
+}
 Buffer *criaBuffer()
 {
     Buffer *B = malloc(sizeof(Buffer));

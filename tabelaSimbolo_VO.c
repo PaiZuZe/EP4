@@ -4,63 +4,7 @@
 #include"myHeader.h"
 #include"tabelaSimbolo_VO.h"
 
-void mergeSortVOfreq(int inicio, int fim, stableVO *stable)
-{
-    int meio;
-    if (inicio < fim - 1) {
-        meio = (inicio + fim)/2;
-        mergeSortVOfreq(inicio, meio, stable);
-        mergeSortVOfreq(meio, fim, stable);
-        mergeVOfreq(inicio, meio, fim, stable);
-    }
-}
-
-void mergeVOfreq(int inicio, int meio, int fim, stableVO *stable)
-{
-    int i, j, k;
-    data *w;
-    w = malloc ((fim - inicio) * sizeof (data));
-    i = inicio; j = meio;
-    k = 0;
-    while (i < meio && j < fim) {
-        if (stable->info[i].freq <=  stable->info[j].freq){
-            w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
-            strcpy(w[k].palavra, stable->info[i].palavra);
-            w[k].freq = stable->info[i].freq;
-            k++;
-            i++;
-        }
-        else{
-            w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
-            strcpy(w[k].palavra, stable->info[j].palavra);
-            w[k].freq = stable->info[j].freq;
-            k++;
-            j++;
-        }
-    }
-    while (i < meio){
-        w[k].palavra = malloc(strlen(stable->info[i].palavra)*sizeof(char));
-        strcpy(w[k].palavra, stable->info[i].palavra);
-        w[k].freq = stable->info[i].freq;
-        k++;
-        i++;
-    }
-
-    while (j < fim){
-        w[k].palavra = malloc(strlen(stable->info[j].palavra)*sizeof(char));
-        strcpy(w[k].palavra, stable->info[j].palavra);
-        w[k].freq = stable->info[j].freq;
-        k++;
-        j++;
-    }
-    for (i = inicio; i < fim; ++i){
-        stable->info[i].palavra = malloc(strlen(w[i - inicio].palavra)*sizeof(char));
-        strcpy(stable->info[i].palavra, w[i - inicio].palavra);
-        stable->info[i].freq = w[i - inicio].freq;
-    }
-    free (w);
-}
-void imprimeVO_A(stableVO *stable)
+void imprimeVO_A(stableV *stable)
 {
     int i;
     /*como a tabela já esta ordenada só iremos imprimir ela.
@@ -71,26 +15,26 @@ void imprimeVO_A(stableVO *stable)
     }
     return;
 }
-void imprimeVO_O(stableVO *stable)
+void imprimeVO_O(stableV *stable)
 {
     int i;
-    mergeSortVOfreq(0, stable->ultPos, stable);
+    mergeSortM(0, stable->ultPos, stable->info, "O");
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
     }
     return;
 }
-stableVO *criaStableVO()
+stableV *criaStableVO()
 {
-    stableVO *stable = malloc(sizeof(stableVO));
+    stableV *stable = malloc(sizeof(stableV));
     stable->max = 8;
     stable->ultPos = 0;
     stable->info = malloc(stable->max*sizeof(data));
     return(stable);
 }
 
-void destroiStableVO(stableVO *stable)
+void destroiStableVO(stableV *stable)
 {
     int i;
     for(i = 0; i < stable->ultPos; i++)
@@ -100,7 +44,7 @@ void destroiStableVO(stableVO *stable)
     return;
 }
 
-stableVO *insereStableVO(char *key, stableVO *stable)
+stableV *insereStableVO(char *key, stableV *stable)
 {
     int i,k;
     /*primeiro iremos verificar se a tabela esta cheia.
@@ -129,11 +73,11 @@ stableVO *insereStableVO(char *key, stableVO *stable)
     return stable;
 }
 
-stableVO *realocaStableVO(stableVO *stable)
+stableV *realocaStableVO(stableV *stable)
 {
-    stableVO *stableNova;
+    stableV *stableNova;
     int i;
-    stableNova = malloc(sizeof(stableVO));
+    stableNova = malloc(sizeof(stableV));
     stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
     stableNova->info = malloc(stableNova->max*sizeof(data));
