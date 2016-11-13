@@ -1,12 +1,8 @@
 #ifndef __TABELASIMBOLO_LD_H
 #define __TABELASIMBOLO_LD_H
 
-typedef struct{
-                char *palavra;
-                int freq;
-                } dataLD;
 typedef struct noLD {
-                    dataLD info;
+                    data info;
                     struct noLD *next;
                     }celulaLD;
 
@@ -19,15 +15,15 @@ int nElementosLD(apontadorLD inicio);
 /*esta função uma tabela de simbolos que usa uma Lista ligada e ira criar um
  *vetor com os elementos desta tabela.
  */
-dataLD *LDtoVD(apontadorLD inicio);
+data *LDtoVD(apontadorLD inicio);
 /*esta é uma função de mergeSort que ira ordenar um vetor de uma struct, a
  *ordenção ira depender da variavel tipoOrd(pode ser por frequencia ou
  *alfabeticamente).
  */
-void mergeSortLD(int inicio, int fim, dataLD *V, char *tipoOrd);
+void mergeSortLD(int inicio, int fim, data *V, char *tipoOrd);
 /*função de merge modificada.
  */
-void mergeLD(int inicio, int meio, int fim, dataLD *V, char *tipoOrd);
+void mergeLD(int inicio, int meio, int fim, data *V, char *tipoOrd);
 /*esta função recebe uma tabela de simbolos feita com lista ligada e a imprime
  *na saida padrão em ordem alfabetica.
  */

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"myHeader.h"
 #include"tabelaSimbolo_VO.h"
 
 void mergeSortVOfreq(int inicio, int fim, stableVO *stable)
@@ -17,8 +18,8 @@ void mergeSortVOfreq(int inicio, int fim, stableVO *stable)
 void mergeVOfreq(int inicio, int meio, int fim, stableVO *stable)
 {
     int i, j, k;
-    dataVO *w;
-    w = malloc ((fim - inicio) * sizeof (dataVO));
+    data *w;
+    w = malloc ((fim - inicio) * sizeof (data));
     i = inicio; j = meio;
     k = 0;
     while (i < meio && j < fim) {
@@ -85,7 +86,7 @@ stableVO *criaStableVO()
     stableVO *stable = malloc(sizeof(stableVO));
     stable->max = 8;
     stable->ultPos = 0;
-    stable->info = malloc(stable->max*sizeof(dataVO));
+    stable->info = malloc(stable->max*sizeof(data));
     return(stable);
 }
 
@@ -135,7 +136,7 @@ stableVO *realocaStableVO(stableVO *stable)
     stableNova = malloc(sizeof(stableVO));
     stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
-    stableNova->info = malloc(stableNova->max*sizeof(dataVO));
+    stableNova->info = malloc(stableNova->max*sizeof(data));
     /*ao dobrarmos o tamanho garantimos que não iremos fazer essa operação
      *muitas vezes
      */

@@ -5,6 +5,10 @@ typedef struct {
                 int max;
                 int top;
                 }Buffer;
+typedef struct{
+                char *palavra;
+                int freq;
+                } data;                
 /*esta função cria um buffer(vetor dinamico) de char e devolve um ponteiro para
  *o buffer criado.
 */

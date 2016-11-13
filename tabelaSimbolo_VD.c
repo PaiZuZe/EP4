@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"myHeader.h"
 #include"tabelaSimbolo_VD.h"
 
 void mergeSortVD(int inicio, int fim, stableVD *stable, char *tipoOrd)
@@ -17,8 +18,8 @@ void mergeSortVD(int inicio, int fim, stableVD *stable, char *tipoOrd)
 void mergeVD(int inicio, int meio, int fim, stableVD *stable, char *tipoOrd)
 {
     int i, j, k;
-    dataVD *w;
-    w = malloc ((fim - inicio) * sizeof (dataVD));
+    data *w;
+    w = malloc ((fim - inicio) * sizeof (data));
     i = inicio; j = meio;
     k = 0;
     while (i < meio && j < fim) {
@@ -102,7 +103,7 @@ stableVD *criaStableVD()
     stableVD *stable = malloc(sizeof(stableVD));
     stable->max = 8;
     stable->ultPos = 0;
-    stable->info = malloc(stable->max*sizeof(dataVD));
+    stable->info = malloc(stable->max*sizeof(data));
     return(stable);
 }
 
@@ -150,7 +151,7 @@ stableVD *realocaStableVD(stableVD *stable)
     stableNova = malloc(sizeof(stableVD));
     stableNova->max = stable->max*2;
     stableNova->ultPos = stable->ultPos;
-    stableNova->info = malloc(stableNova->max*sizeof(dataVD));
+    stableNova->info = malloc(stableNova->max*sizeof(data));
     /*ao dobrarmos o tamanho garantimos que não iremos fazer essa operação
      *muitas vezes
      */

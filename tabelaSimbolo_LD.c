@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"myHeader.h"
 #include"tabelaSimbolo_LD.h"
 int nElementosLD(apontadorLD inicio)
 {
@@ -10,11 +11,11 @@ int nElementosLD(apontadorLD inicio)
     return j;
 }
 
-dataLD *LDtoVD(apontadorLD inicio){
+data *LDtoVD(apontadorLD inicio){
     int j;
     apontadorLD i;
-    dataLD *V = NULL;
-    V = malloc(nElementosLD(inicio)*sizeof(dataLD));
+    data *V = NULL;
+    V = malloc(nElementosLD(inicio)*sizeof(data));
     for(i = inicio, j = 0; i != NULL; i = i->next, j++){
         V[j].palavra = malloc(strlen(i->info.palavra)*sizeof(char));
         strcpy(V[j].palavra, i->info.palavra);
@@ -22,7 +23,7 @@ dataLD *LDtoVD(apontadorLD inicio){
     }
     return V;
 }
-void mergeSortLD(int inicio, int fim, dataLD *V, char *tipoOrd)
+void mergeSortLD(int inicio, int fim, data *V, char *tipoOrd)
 {
     int meio;
     if (inicio < fim - 1) {
@@ -33,11 +34,11 @@ void mergeSortLD(int inicio, int fim, dataLD *V, char *tipoOrd)
     }
 }
 
-void mergeLD(int inicio, int meio, int fim, dataLD *V, char *tipoOrd)
+void mergeLD(int inicio, int meio, int fim, data *V, char *tipoOrd)
 {
     int i, j, k;
-    dataLD *w;
-    w = malloc ((fim - inicio) * sizeof (dataLD));
+    data *w;
+    w = malloc ((fim - inicio) * sizeof (data));
     i = inicio; j = meio;
     k = 0;
     while (i < meio && j < fim) {
@@ -99,7 +100,7 @@ void mergeLD(int inicio, int meio, int fim, dataLD *V, char *tipoOrd)
 void imprimeLD_A(apontadorLD stable)
 {
     int i;
-    dataLD *V;
+    data *V;
     /*como ordenar uma lista ligada é muito dificil iremos criar um vetor com
      *os elementos da tabela e ordenalo em NlogN.
      */
@@ -114,7 +115,7 @@ void imprimeLD_A(apontadorLD stable)
 void imprimeLD_O(apontadorLD stable)
 {
     int i;
-    dataLD *V;
+    data *V;
     /*como ordenar uma lista ligada é muito dificil iremos criar um vetor com
      *os elementos da tabela e ordenalo em NlogN.
      */

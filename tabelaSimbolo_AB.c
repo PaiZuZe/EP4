@@ -1,6 +1,7 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"myHeader.h"
 #include"tabelaSimbolo_AB.h"
 
 void imprimeAB_A(apontadorAB stable)
@@ -67,7 +68,7 @@ apontadorAB insereStableAB(char *key, apontadorAB inicio)
     }
     return inicio;
 }
-apontadorAB insereStableABfreq(dataAB *novo, apontadorAB inicio)
+apontadorAB insereStableABfreq(data *novo, apontadorAB inicio)
 {
     /*vamos primeiro verificar se a lista esta vazia.
      */
@@ -83,12 +84,9 @@ apontadorAB insereStableABfreq(dataAB *novo, apontadorAB inicio)
     /*agora iremos chamar recursivamente a função para a esquerda ou direita
      *dependendo de onde o novo item deveria ser inserido.
      */
-    if(novo->freq < inicio->info.freq){
+    if(novo->freq < inicio->info.freq)
         inicio->esq = insereStableABfreq(novo, inicio->esq);
-        return inicio;
-    }
-    else if(novo->freq >= inicio->info.freq){
+    else if(novo->freq >= inicio->info.freq)
         inicio->dir = insereStableABfreq(novo, inicio->dir);
-    }
     return inicio;
 }

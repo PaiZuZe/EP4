@@ -2,11 +2,7 @@
 #define __TABELASIMBOLO_VO_H__
 
 typedef struct{
-                char *palavra;
-                int freq;
-                } dataVO;
-typedef struct{
-                dataVO *info;
+                data *info;
                 int ultPos;
                 int max;
                 } stableVO;

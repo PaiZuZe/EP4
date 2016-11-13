@@ -1,12 +1,8 @@
 #ifndef __TABELASIMBOLO_AB_H
 #define __TABELASIMBOLO_AB_H
-typedef struct{
-                char *palavra;
-                int freq;
-                } dataAB;
 
 typedef struct noAB{
-                dataAB info;
+                data info;
                 struct noAB *esq;
                 struct noAB *dir;
                 } celulaAB;
@@ -32,5 +28,5 @@ void destroiStableAB(apontadorAB inicio);
  */
 apontadorAB insereStableAB(char *key, apontadorAB inicio);
 
-apontadorAB insereStableABfreq(dataAB *novo, apontadorAB inicio);
+apontadorAB insereStableABfreq(data *novo, apontadorAB inicio);
 #endif
