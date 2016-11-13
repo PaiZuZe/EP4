@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -36,21 +39,35 @@ void imprimeLD_A(apontadorLG stable)
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }
+    /*vamos destruir nosso vetor auxiliar;
+     */
+    for(i = 0; i < nElementosLD(stable); i++)
+        free(V[i].palavra);
+    free(V);
     return;
 }
 void imprimeLD_O(apontadorLG stable)
 {
     int i;
     data *V;
-    /*como ordenar uma lista ligada é muito dificil iremos criar um vetor com
-     *os elementos da tabela e ordenalo em NlogN.
+    /*como ordenar uma lista ligada é eneficiente iremos criar um vetor com
+     *os elementos da tabela e ordenalo em NlogN usando um mergeSort modificado
+     *iremos ordenar o vetor por ordem alfabetica para que quando formos
+     *imprimir o vetor as palavras "menores" tomem prescedencia se tiverem a mesma
+     *frequencia, como iremos usar um sort estavel isso é garantido.
      */
     V = LDtoVD(stable);
+    mergeSortM(0, nElementosLD(stable), V, "A");
     mergeSortM(0, nElementosLD(stable), V, "O");
     for(i = 0; i < nElementosLD(stable); i++){
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }
+    /*vamos destruir nosso vetor auxiliar;
+     */
+    for(i = 0; i < nElementosLD(stable); i++)
+        free(V[i].palavra);
+    free(V);    
     return;
 }
 apontadorLG criaStableLD()

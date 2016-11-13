@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -59,13 +62,10 @@ apontadorAB insereStableAB(char *key, apontadorAB inicio)
     /*agora iremos chamar recursivamente a função para a esquerda ou direita
      *dependendo da key.
      */
-    if(strcmp(key, inicio->info.palavra) < 0){
+    if(strcmp(key, inicio->info.palavra) < 0)
         inicio->esq = insereStableAB(key, inicio->esq);
-        return inicio;
-    }
-    else if(strcmp(key, inicio->info.palavra) > 0){
+    else if(strcmp(key, inicio->info.palavra) > 0)
         inicio->dir = insereStableAB(key, inicio->dir);
-    }
     return inicio;
 }
 apontadorAB insereStableABfreq(data *novo, apontadorAB inicio)

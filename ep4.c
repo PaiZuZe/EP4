@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -17,12 +20,14 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     FILE *arquivo;
     Buffer *word;
     /*as tabelas são iniciadas como NULL para evitar uma mensagem de warning.
-    */
+     */
     stableAB = stableABf = NULL;
     stableVO = stableVD = NULL;
     stableLO = stableLD = NULL;
     arquivo = fopen(arquivoTxt, "r");
     word = criaBuffer();
+    /* só iremos criar a tabela que iremos usar.
+     */
     if(!strcmp(tipoTabela, "AB") && !strcmp(tipoOrd, "O"))  stableABf = criaStableAB();
     if(!strcmp(tipoTabela, "AB")) stableAB = criaStableAB();
     else if(!strcmp(tipoTabela, "LO")) stableLO = criaStableLO();
@@ -31,6 +36,8 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     else if(!strcmp(tipoTabela, "VD")) stableVD = criaStableVD();
     while(!feof(arquivo)){
         caracter = fgetc(arquivo);
+        /*primeiro iremos desconsiderar todos os números no começo da palavra.
+         */
         while(!isalpha(caracter) && !feof(arquivo)) caracter = fgetc(arquivo);
         while(isalnum(caracter)){
             caracter = tolower(caracter);
@@ -41,8 +48,8 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
          *na tabela.
          */
         if(feof(arquivo)) break;
-        /*como por convenção strings terminan com 0, ele deve ser adicionado palavra
-         *que as funções sa string.h operem como esperado.
+        /*como por convenção strings terminan com 0, ele deve ser adicionado na
+         *palavra para que as funções da string.h operem como esperado.
          */
         adicionaNoBuffer(word, 0);
         if(!strcmp(tipoTabela, "AB"))
@@ -65,6 +72,7 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
         else{
             stableABf = imprimeAB_O(stableAB, stableABf);
             imprimeAB_A(stableABf);
+            destroiStableAB(stableABf);
         }
         destroiStableAB(stableAB);
     }

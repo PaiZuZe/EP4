@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -48,6 +51,11 @@ void imprimeLO_O(apontadorLG stable)
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }
+    /*vamos destruir nosso vetor auxiliar;
+     */
+    for(i = 0; i < nElementosLO(stable); i++)
+        free(V[i].palavra);
+    free(V);
     return;
 }
 apontadorLG criaStableLO()

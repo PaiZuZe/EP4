@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #ifndef __TABELASIMBOLO_VD_H
 #define __TABELASIMBOLO_VD_H
 /*esta é uma função de mergeSort que ira ordenar um vetor de uma struct, a

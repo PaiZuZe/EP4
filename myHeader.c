@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #include<stdlib.h>
 #include<string.h>
 #include<myHeader.h>

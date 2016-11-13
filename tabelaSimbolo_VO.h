@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #ifndef __TABELASIMBOLO_VO_H__
 #define __TABELASIMBOLO_VO_H__
 /*esta função recebe uma tabela de simbolos feita com vetor dinamico e a imprime

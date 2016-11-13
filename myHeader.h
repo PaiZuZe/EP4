@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #ifndef __MYHEADER_H__
 #define __MYHEADER_H__
 typedef struct {

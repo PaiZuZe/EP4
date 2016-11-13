@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #ifndef __TABELASIMBOLO_LD_H
 #define __TABELASIMBOLO_LD_H
 

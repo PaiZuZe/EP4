@@ -1,3 +1,6 @@
+/*Nome: Victor Chiaradia Gramuglia Araujo
+ *nºUSP:9793756
+ */
 #include <stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -17,6 +20,11 @@ void imprimeVD_A(stableV *stable)
 void imprimeVD_O(stableV *stable)
 {
     int i;
+    /*antes iremos ordenar o vetor por ordem alfabetica para que quando formos
+     *imprimir o vetor as palavras "menores" tomem prescedencia se tiverem a mesma
+     *frequencia, como iremos usar um sort estavel isso é garantido.
+     */
+    mergeSortM(0, stable->ultPos, stable->info, "A");
     mergeSortM(0, stable->ultPos, stable->info, "O");
     for(i = 0; i < stable->ultPos; i++){
         printf("%s ", stable->info[i].palavra);
