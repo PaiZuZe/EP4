@@ -12,6 +12,14 @@ void imprimeAB_A(apontadorAB stable)
     imprimeAB_A(stable->dir);
     return;
 }
+apontadorAB imprimeAB_O(apontadorAB stable, apontadorAB stableNova)
+{
+    if (stable == NULL) return stableNova;
+    imprimeAB_O(stable->esq, stableNova);
+    stableNova = insereStableABfreq(&(stable->info), stableNova);
+    imprimeAB_O(stable->dir, stableNova);
+    return stableNova;
+}
 
 apontadorAB criaStableAB()
 {
@@ -56,6 +64,31 @@ apontadorAB insereStableAB(char *key, apontadorAB inicio)
     }
     else if(strcmp(key, inicio->info.palavra) > 0){
         inicio->dir = insereStableAB(key, inicio->dir);
+    }
+    return inicio;
+}
+apontadorAB insereStableABfreq(dataAB *novo, apontadorAB inicio)
+{
+    /*vamos primeiro verificar se a lista esta vazia.
+     */
+    if(!inicio){
+        inicio = malloc(sizeof(celulaAB));
+        inicio->info.palavra = malloc(strlen(novo->palavra)*sizeof(char));
+        strcpy(inicio->info.palavra, novo->palavra);
+        inicio->info.freq = novo->freq;
+        inicio->dir = NULL;
+        inicio->esq = NULL;
+        return inicio;
+    }
+    /*agora iremos chamar recursivamente a função para a esquerda ou direita
+     *dependendo de onde o novo item deveria ser inserido.
+     */
+    if(novo->freq < inicio->info.freq){
+        inicio->esq = insereStableABfreq(novo, inicio->esq);
+        return inicio;
+    }
+    else if(novo->freq >= inicio->info.freq){
+        inicio->dir = insereStableABfreq(novo, inicio->dir);
     }
     return inicio;
 }

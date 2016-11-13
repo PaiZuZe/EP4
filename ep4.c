@@ -13,15 +13,17 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     int caracter;
     /*as tabelas são iniciadas como NULL para evitar uma mensagem de warning.
      */
-    apontadorAB stableAB = NULL;
+    apontadorAB stableAB, stableABf;
     apontadorLO stableLO = NULL;
     apontadorLD stableLD = NULL;
     stableVO *stableVO = NULL;
     stableVD *stableVD = NULL;
     FILE *arquivo;
     Buffer *word;
+    stableAB = stableABf = NULL;
     arquivo = fopen(arquivoTxt, "r");
     word = criaBuffer();
+    if(!strcmp(tipoTabela, "AB") && !strcmp(tipoOrd, "O"))  stableABf = criaStableAB();
     if(!strcmp(tipoTabela, "AB")) stableAB = criaStableAB();
     else if(!strcmp(tipoTabela, "LO")) stableLO = criaStableLO();
     else if(!strcmp(tipoTabela, "LD")) stableLD = criaStableLD();
@@ -60,6 +62,10 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
      */
     if(!strcmp(tipoTabela, "AB")){
         if(!strcmp(tipoOrd, "A")) imprimeAB_A(stableAB);
+        else{
+            stableABf = imprimeAB_O(stableAB, stableABf);
+            imprimeAB_A(stableABf);
+        }
         destroiStableAB(stableAB);
     }
     else if(!strcmp(tipoTabela, "LO")){

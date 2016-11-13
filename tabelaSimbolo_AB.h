@@ -13,6 +13,7 @@ typedef struct noAB{
 
 typedef celulaAB *apontadorAB;
 
+apontadorAB imprimeAB_O(apontadorAB stable, apontadorAB stableNova);
 /*função recursiva que recebe uma tabela de simbolo que usa ABB's e imprime ela
  *em ordem alfabetica.
  */
@@ -31,4 +32,5 @@ void destroiStableAB(apontadorAB inicio);
  */
 apontadorAB insereStableAB(char *key, apontadorAB inicio);
 
+apontadorAB insereStableABfreq(dataAB *novo, apontadorAB inicio);
 #endif
