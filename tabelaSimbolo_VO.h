@@ -3,6 +3,8 @@
  */
 #ifndef __TABELASIMBOLO_VO_H__
 #define __TABELASIMBOLO_VO_H__
+
+
 /*esta função recebe uma tabela de simbolos feita com vetor dinamico e a imprime
  *na saida padrão em ordem de frequencia.
  */
@@ -31,9 +33,8 @@ stableV *insereStableVO(char *key, stableV *stable);
  *simbolos com os mesmos itens porem com o dobro so tamanho da original.
  */
 stableV *realocaStableVO(stableV *stable);
-
-/*Função recebe uma tabela de simbolos ordenada, uma string e retorna o valor
- *da posição se a string estiver na tabela e -1 se não se encontar; buscaBin
- *modificada para ser usada em string's e não números
+/*uma função de buscaBinaria recursiva que devolve onde o item desejado se encontra
+ *ou deveria ser inserido para que a tabela fique ordenada.
  */
+int buscaBin(char *key, stableV *stable, int ini, int fim);
 #endif

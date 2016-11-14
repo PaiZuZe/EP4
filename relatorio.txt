@@ -22,13 +22,13 @@ nºUSP:9793756
 
     2-Vetor Ordenado:
         Embora a inserção agora seja mais rapida em relação ao Vetor desordenado
-    temos o problema que temos que mudar uma parte dos itens de posição para que
-    a tabela continue ordenada, assim não há ganho na rapidez mesmo ele estando
-    ordenado. As outras funções irão ter o memso desempenho que antes a única
-    diferença sera na impresão que não sera nescessario usar o mergeSort para
-    imprimir em ordem alfabetica assim ela fica com complexidade O(n), quando
-    for para imprimir em ordem de frequencia só um mergeSort sera usado, pórem
-    a complexidade continua O(NlogN).
+    devido a busca binaria temos o problema que temos que mudar uma parte dos
+    itens de posição para que a tabela continue ordenada, assim não há ganho na
+    rapidez mesmo ele estando ordenado. As outras funções irão ter o memso
+    desempenho que antes a única diferença sera na impresão que não sera
+    nescessario usar o mergeSort para imprimir em ordem alfabetica assim ela
+    fica com complexidade O(n), quando for para imprimir em ordem de frequencia
+    só um mergeSort sera usado, pórem a complexidade continua O(NlogN).
 
     3-Lista ligada desordenada:
         A inserção de um novo item na tabela de simbolos tem complexidade O(n),
@@ -58,17 +58,12 @@ nºUSP:9793756
 
 -Teste de tempo:
         Para testar o tempo foi usado um arquivo com os dois primeiros livros da
-    serie Game of Thrones (3.4Mb) e o terceiro livro da serie (2.4 Mb).
-              VD/A   VO/A   LD/A   LO/A   AB/A    VD/O   VO/O   LD/O   LO/O   AB/O
-    teste1:   5.8s   37s    10s    48s    0.02s   6s     32s    10s    52s    0.02s
-    teste2:   4s     20s    6.6s   27.7s  0.018s  3.9s   21s    6.6s   30.8s  0.02s
+    serie Game of Thrones (3.4Mb) e o terceiro livro da serie (2.4 Mb)
+            VD/A   VO/A   LD/A   LO/A   AB/A    VD/O   VO/O   LD/O   LO/O   AB/O
+    test1:  5.8s   5s     10s    48s    0.02s   6s     4s     10s    52s    0.02s
+    test2:  4s     4s     6.6s   27.7s  0.018s  3.9s   4s    6.6s   30.8s  0.02s
 
 
-
-    Esses resultados me levam acreditar que uma analise assintótica não seria
-    o ideal e que talvez como nas funções de inserção LO e VO, é feita uma c
-    omparação para ver se já passamos e portanto o item não se encontra toma
-    mais tempo do que o esperado.
 
 -Redundancia no codigo:
         Muitas funções que se encontram em .h's diferentes são as mesmas, como

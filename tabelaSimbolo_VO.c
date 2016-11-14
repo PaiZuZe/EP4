@@ -55,20 +55,18 @@ stableV *insereStableVO(char *key, stableV *stable)
     if(stable->ultPos == stable->max){
         stable = realocaStableVO(stable);
     }
-    for(i = 0; i < stable->ultPos; i++){
+    i = buscaBin(key, stable, 0, stable->ultPos -1);
+    if(stable->info[i].palavra){
         if(!strcmp(key,stable->info[i].palavra)){
             stable->info[i].freq++;
             return stable;
         }
-        if(strcmp(key, stable->info[i].palavra) < 0){
-            for(k = stable->ultPos - 1; k >= i; k--){
-                stable->info[k + 1].palavra = malloc(strlen(stable->info[k].palavra)*sizeof(char));
-                strcpy(stable->info[k + 1].palavra,stable->info[k].palavra);
-                free(stable->info[k].palavra);
-                stable->info[k + 1].freq = stable->info[k].freq;
-            }
-            break;
-        }
+    }
+    for(k = stable->ultPos - 1; k >= i; k--){
+        stable->info[k + 1].palavra = malloc(strlen(stable->info[k].palavra)*sizeof(char));
+        strcpy(stable->info[k + 1].palavra,stable->info[k].palavra);
+        free(stable->info[k].palavra);
+        stable->info[k + 1].freq = stable->info[k].freq;
     }
     stable->info[i].palavra = malloc(strlen(key)*sizeof(char));
     strcpy(stable->info[i].palavra,key);
@@ -95,4 +93,14 @@ stableV *realocaStableVO(stableV *stable)
     }
     destroiStableVO(stable);
     return(stableNova);
+}
+
+int buscaBin(char *key, stableV *stable, int ini, int fim)
+{
+    int meio;
+    meio = (fim + ini)/2;
+    if(ini > fim) return ini;
+    if(!strcmp(key, stable->info[meio].palavra)) return meio;
+    if(strcmp(key, stable->info[meio].palavra) > 0) return buscaBin(key, stable, meio + 1, fim);
+    return buscaBin(key, stable, ini, meio - 1);
 }
