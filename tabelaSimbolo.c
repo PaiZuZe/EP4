@@ -113,6 +113,7 @@ int main(int argc, char *argv[])
         }
         else{
             printf("Argumento tipo de ordenação não é valido\n");
+            printf("os argumentos dados: %s %s %s\n",argv[1], argv[2], argv[3]);
             return 1;
         }
     }
@@ -121,6 +122,7 @@ int main(int argc, char *argv[])
             tabela(argv[1], argv[2], argv[3]);
         else{
             printf("Argumento tipo de ordenação não é valido\n");
+            printf("os argumentos dados: %s %s %s\n",argv[1], argv[2], argv[3]);
             return 1;
         }
     }
@@ -129,6 +131,7 @@ int main(int argc, char *argv[])
             tabela(argv[1], argv[2], argv[3]);
         else{
             printf("Argumento tipo de ordenação não é valido\n");
+            printf("os argumentos dados: %s %s %s\n",argv[1], argv[2], argv[3]);
             return 1;
         }
     }
@@ -137,6 +140,7 @@ int main(int argc, char *argv[])
             tabela(argv[1], argv[2], argv[3]);
         else{
             printf("Argumento tipo de ordenação não é valido\n");
+            printf("os argumentos dados: %s %s %s\n",argv[1], argv[2], argv[3]);
             return 1;
         }
     }
@@ -145,11 +149,13 @@ int main(int argc, char *argv[])
             tabela(argv[1], argv[2], argv[3]);
         else{
             printf("Argumento tipo de ordenação não é valido\n");
+            printf("os argumentos dados: %s %s %s\n",argv[1], argv[2], argv[3]);
             return 1;
         }
     }
     else{
         printf("Argumento tipo de tabela não é valido\n");
+        printf("os argumentos dados: %s %s %s\n",argv[1], argv[2], argv[3]);
         return 1;
     }
     return 0;

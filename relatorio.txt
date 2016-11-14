@@ -1,6 +1,13 @@
 Nome: Victor Chiaradia Gramuglia Araujo
 nºUSP:9793756
 
+- Andamento do programa:
+        O programa é relativamente simples, apos receber os argumentos da linha
+    de comando, o tipo de tabela desejada sera criada e o texto sera lido palavra
+    por palavra (note que se o arquivo não existir havera um erro), ao final da
+    palavra ela sera inserida na tabela, após o texto inteiro ser lido a tabela
+    sera impressa comforme o estipulado pelo usuário e o programa acabara.
+
 - Analize de complexidade:
 
     A complexidade das operações só leva em conta um iten, e não todos que serão
@@ -57,13 +64,27 @@ nºUSP:9793756
     é um limite teorico.
 
 -Teste de tempo:
-        Para testar o tempo foi usado um arquivo com os dois primeiros livros da
-    serie Game of Thrones (3.4Mb) e o terceiro livro da serie (2.4 Mb)
+        Para testar o tempo foi usado um arquivo com terceiro livro da serie
+    Game of Thrones (2.4 Mb)  os dois primeiros livros da serie (3.4Mb) e o
+    ultimo teste foi os ultimos quatro livros da serie Harry Potter (5.1 Mb).
             VD/A   VO/A   LD/A   LO/A   AB/A    VD/O   VO/O   LD/O   LO/O   AB/O
-    test1:  5.8s   5s     10s    48s    0.02s   6s     4s     10s    52s    0.02s
-    test2:  4s     4s     6.6s   27.7s  0.018s  3.9s   4s    6.6s   30.8s  0.02s
+    test1:  4s     4s     6.6s   27.7s  0.018s  3.9s   4s     6.6s   30.8s  0.02s
+    test2:  5.8s   5s     10s    48s    0.02s   6s     4s     10s    52s    0.02s
+    test3:  9s     7.5s   15s    1m18s  0.03s   9s     7.2s   14.7s  1m24s  0.04s
 
+        A lista ligada ordena possui um comportamento curioso, antes de a busca
+    binaria ser implementada para o vetor ordenado, o algoritmo támbem era
+    eneficiente:
+        na função insereStableLO encontramos o código abaixo:
 
+            while(temp != NULL && strcmp(key, temp->info.palavra) >= 0){
+                if(!strcmp(key, temp->info.palavra)){
+                    temp->info.freq++;
+                    return(inicio);
+                }
+    A eneficiencia me faz acreditar que a comparação "strcmp(key, temp->info.palavra) >= 0"
+    é responsavel pela demora no código, como não é possivel fazer uma busca
+    binaria na lista não é possivel melhorar.
 
 -Redundancia no codigo:
         Muitas funções que se encontram em .h's diferentes são as mesmas, como
@@ -71,3 +92,7 @@ nºUSP:9793756
     foi feito pois pareceu fazer sentido que a função que cria/destroi a tabela
     se encontre em seu .h especifico e não em outro .h com um nome generico como
     myHeader.h.
+
+-Comentários no codigo:
+        Algumas funções possuem nehum comentário, isso foi feito por serem
+    funções classicas, como a busca binaria ou por serem relativamente simples.
