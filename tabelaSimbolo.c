@@ -11,7 +11,7 @@
 #include"tabelaSimbolo_LD.h"
 #include"tabelaSimbolo_LO.h"
 #include"tabelaSimbolo_AB.h"
-
+/**/
 void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     int caracter;
     apontadorAB stableAB;
