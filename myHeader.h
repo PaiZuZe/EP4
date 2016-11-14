@@ -3,15 +3,20 @@
  */
 #ifndef __MYHEADER_H__
 #define __MYHEADER_H__
+typedef struct{
+                char *palavra;
+                int freq;
+                } data;
 typedef struct {
                 char *palavra;
                 int max;
                 int top;
                 }Buffer;
-typedef struct{
-                char *palavra;
-                int freq;
-                } data;
+typedef struct {
+                data *info;
+                int max;
+                int top;
+                }BufferData;
 typedef struct{
                 data *info;
                 int ultPos;
@@ -51,4 +56,19 @@ void destroiBuffer(Buffer *B);
 /*função recebe um buffer e faz com que ele volte para seu estado original.
  */
 void clearBuffer(Buffer *B);
+/*esta função cria um buffer(vetor dinamico) de datas e devolve um ponteiro para
+ *o buffer criado.
+*/
+BufferData *criaBufferData();
+/*esta função recebe um ponteiro para o buffer que sera realocado, ela ira
+ *dobrar o tamanho do buffer original, mantendo seu conteudo igual.
+ */
+void realocaBufferData(BufferData *B);
+/*a função recebe um buffer e um tipo data que ira ser adicionado no buffer, a
+ *função aumenta o tamanho do buffer se nescessario.
+ */
+void adicionaNoBufferData(BufferData *B, data *Novo);
+/*esta função recebe um buffer e ira desalocar a memoria usada por ele.
+ */
+void destroiBufferData(BufferData *B);
 #endif

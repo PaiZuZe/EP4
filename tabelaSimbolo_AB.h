@@ -11,8 +11,13 @@ typedef struct noAB{
                 } celulaAB;
 
 typedef celulaAB *apontadorAB;
-
-apontadorAB imprimeAB_O(apontadorAB stable, apontadorAB stableNova);
+/*Função recebe uma ABB e um vetor de tipo data dinamico, a função ira copiar
+ *o conteudo da ABB para o vetor.
+ */
+BufferData *ABparaBuffer(apontadorAB stable, BufferData *Buffer);
+/*Função recebe uma ABB e a imprime em ordem de frequencia da palavras
+ */
+void imprimeAB_O(apontadorAB stable);
 /*função recursiva que recebe uma tabela de simbolo que usa ABB's e imprime ela
  *em ordem alfabetica.
  */

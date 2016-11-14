@@ -16,13 +16,29 @@ void imprimeAB_A(apontadorAB stable)
     imprimeAB_A(stable->dir);
     return;
 }
-apontadorAB imprimeAB_O(apontadorAB stable, apontadorAB stableNova)
+
+void imprimeAB_O(apontadorAB stable)
 {
-    if (stable == NULL) return stableNova;
-    imprimeAB_O(stable->esq, stableNova);
-    stableNova = insereStableABfreq(&(stable->info), stableNova);
-    imprimeAB_O(stable->dir, stableNova);
-    return stableNova;
+    int i;
+    BufferData *Buffer;
+    Buffer = criaBufferData();
+    Buffer = ABparaBuffer(stable, Buffer);
+    mergeSortM(0, Buffer->top, Buffer->info, "O");
+    for(i = 0; i < Buffer->top; i++){
+        printf("%s ", Buffer->info[i].palavra);
+        printf("%d\n", Buffer->info[i].freq);
+    }
+    destroiBufferData(Buffer);
+    return;
+}
+
+BufferData *ABparaBuffer(apontadorAB stable, BufferData *Buffer)
+{
+    if (stable == NULL) return Buffer;
+    ABparaBuffer(stable->esq, Buffer);
+    adicionaNoBufferData(Buffer, &(stable->info));
+    ABparaBuffer(stable->dir, Buffer);
+    return Buffer;
 }
 
 apontadorAB criaStableAB()

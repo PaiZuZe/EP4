@@ -1,6 +1,7 @@
 /*Nome: Victor Chiaradia Gramuglia Araujo
  *nºUSP:9793756
  */
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<myHeader.h>
@@ -101,18 +102,42 @@ Buffer *criaBuffer()
     B->palavra = malloc(B->max*sizeof(char));
     return B;
 }
+BufferData *criaBufferData()
+{
+    BufferData *B = malloc(sizeof(BufferData));
+    B->max = 8;
+    B->top = 0;
+    B->info = malloc(B->max*sizeof(data));
+    return B;
+}
 void realocaBuffer(Buffer *B)
 {
     int i;
-    Buffer *novoBuffer = malloc(sizeof(Buffer));
-    novoBuffer->max = 2*B->max;
-    novoBuffer->top = B->top;
-    novoBuffer->palavra = malloc(novoBuffer->max*sizeof(char));
+    char *Temp;
+    Temp = malloc(2*B->max*sizeof(char));
     for(i = 0; i < B->max; i++)
-        novoBuffer->palavra[i] = B->palavra[i];
+        Temp[i] = B->palavra[i];
     free(B->palavra);
-    B->max = novoBuffer->max;
-    B->palavra = novoBuffer->palavra;
+    B->max = 2*B->max;
+    B->palavra = Temp;
+    return;
+}
+void realocaBufferData(BufferData *B)
+{
+    int i;
+    data *Temp;
+    Temp = malloc(2*B->max*sizeof(data));
+    for(i = 0; i < B->top; i++){
+        Temp[i].palavra = malloc(strlen(B->info[i].palavra)*sizeof(char));
+        strcpy(Temp[i].palavra, B->info[i].palavra);
+        Temp[i].freq = B->info[i].freq;
+    }
+    for(i = 0; i < B->max; i++){
+        free(B->info[i].palavra);
+    }
+    free(B->info);
+    B->max = 2*B->max;
+    B->info = Temp;
     return;
 }
 void adicionaNoBuffer(Buffer *B, char c)
@@ -124,9 +149,30 @@ void adicionaNoBuffer(Buffer *B, char c)
     B->top++;
     return;
 }
+void adicionaNoBufferData(BufferData *B, data *Novo)
+{
+    /*antes de adicionadar no buffer presisamos ver se ele esta cheio.
+     */
+    if(B->top == B->max) realocaBufferData(B);
+    B->info[B->top].palavra = malloc(strlen(Novo->palavra)*sizeof(char));
+    strcpy(B->info[B->top].palavra, Novo->palavra);
+    B->info[B->top].freq = Novo->freq;
+    B->top++;
+    return;
+}
 void destroiBuffer(Buffer *B)
 {
     free(B->palavra);
+    free(B);
+    return;
+}
+void destroiBufferData(BufferData *B)
+{
+    int i;
+    for(i = 0; i < B->top; i++){
+        free(B->info[i].palavra);
+    }
+    free(B->info);
     free(B);
     return;
 }
