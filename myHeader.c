@@ -35,6 +35,7 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
             if (strcmp(V[i].palavra,V[j].palavra) <= 0){
                 w[k].palavra = malloc(strlen(V[i].palavra)*sizeof(char));
                 strcpy(w[k].palavra, V[i].palavra);
+                free(V[i].palavra);
                 w[k].freq = V[i].freq;
                 k++;
                 i++;
@@ -42,6 +43,7 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
             else{
                 w[k].palavra = malloc(strlen(V[j].palavra)*sizeof(char));
                 strcpy(w[k].palavra, V[j].palavra);
+                free(V[j].palavra);
                 w[k].freq = V[j].freq;
                 k++;
                 j++;
@@ -51,6 +53,7 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
             if (V[i].freq <=  V[j].freq){
                 w[k].palavra = malloc(strlen(V[i].palavra)*sizeof(char));
                 strcpy(w[k].palavra, V[i].palavra);
+                free(V[i].palavra);
                 w[k].freq = V[i].freq;
                 k++;
                 i++;
@@ -58,6 +61,7 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
             else{
                 w[k].palavra = malloc(strlen(V[j].palavra)*sizeof(char));
                 strcpy(w[k].palavra, V[j].palavra);
+                free(V[j].palavra);
                 w[k].freq = V[j].freq;
                 k++;
                 j++;
@@ -67,6 +71,7 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
     while (i < meio){
         w[k].palavra = malloc(strlen(V[i].palavra)*sizeof(char));
         strcpy(w[k].palavra, V[i].palavra);
+        free(V[i].palavra);
         w[k].freq = V[i].freq;
         k++;
         i++;
@@ -75,6 +80,7 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
     while (j < fim){
         w[k].palavra = malloc(strlen(V[j].palavra)*sizeof(char));
         strcpy(w[k].palavra, V[j].palavra);
+        free(V[j].palavra);
         w[k].freq = V[j].freq;
         k++;
         j++;
@@ -82,8 +88,10 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
     for (i = inicio; i < fim; ++i){
         V[i].palavra = malloc(strlen(w[i - inicio].palavra)*sizeof(char));
         strcpy(V[i].palavra, w[i - inicio].palavra);
+        free(w[i - inicio].palavra);
         V[i].freq = w[i - inicio].freq;
     }
+    free(w);
 }
 Buffer *criaBuffer()
 {
