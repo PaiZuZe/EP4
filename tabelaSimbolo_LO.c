@@ -40,7 +40,7 @@ void imprimeLO_O(apontadorLG stable)
      */
     V = LOtoVD(stable);
     mergeSortM(0, nElementosLG(stable), V, "O");
-    for(i = 0; i < nElementosLG(stable); i++){
+    for(i = nElementosLG(stable) -1; i >= 0; i--){
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }

@@ -24,8 +24,8 @@ nºUSP:9793756
     alfabetica ou de frequencia é nescessario primeiro ordenala, pórem como é
     usado um mergeSort esta operação é O(NlogN), o merge é usado duas vezes para
     ordenar por frequencia pois o primeiro merge garante que as palavras que possuem
-    a mesma frequencia estarão em ordem alfabetica, isso foi feito pois o codigo
-    continua com uma complexidade O(NlogN) e fica melhor asteticamente.
+    a mesma frequencia estarão em ordem alfabetica reversa,
+    isso foi feito pois o codigo continua com uma complexidade O(NlogN).
 
     2-Vetor Ordenado:
         Embora a inserção agora seja mais rapida em relação ao Vetor desordenado

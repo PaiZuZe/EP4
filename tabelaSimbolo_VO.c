@@ -22,7 +22,7 @@ void imprimeVO_O(stableV *stable)
 {
     int i;
     mergeSortM(0, stable->ultPos, stable->info, "O");
-    for(i = 0; i < stable->ultPos; i++){
+    for(i = stable->ultPos - 1; i >= 0; i--){
         printf("%s ", stable->info[i].palavra);
         printf("%d\n", stable->info[i].freq);
     }

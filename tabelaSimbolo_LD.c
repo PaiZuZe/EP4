@@ -51,7 +51,7 @@ void imprimeLD_O(apontadorLG stable)
     V = LDtoVD(stable);
     mergeSortM(0, nElementosLG(stable), V, "A");
     mergeSortM(0, nElementosLG(stable), V, "O");
-    for(i = 0; i < nElementosLG(stable); i++){
+    for(i = nElementosLG(stable) -1; i >= 0; i--){
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }

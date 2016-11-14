@@ -24,7 +24,7 @@ void imprimeAB_O(apontadorAB stable)
     Buffer = criaBufferData();
     Buffer = ABparaBuffer(stable, Buffer);
     mergeSortM(0, Buffer->top, Buffer->info, "O");
-    for(i = 0; i < Buffer->top; i++){
+    for(i = Buffer->top -1; i >= 0; i--){
         printf("%s ", Buffer->info[i].palavra);
         printf("%d\n", Buffer->info[i].freq);
     }
