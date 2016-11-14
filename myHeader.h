@@ -22,7 +22,9 @@ typedef struct noLG {
                     struct noLG *next;
                     }celulaLG;
 typedef celulaLG *apontadorLG;
-
+/*esta função uma  Lista ligada e conta o números de elementos presentes nela.
+ */
+int nElementosLG(apontadorLG inicio);
 /*esta é uma função de mergeSort que ira ordenar um vetor de uma struct(data), a
  *ordenção ira depender da variavel tipoOrd(pode ser por frequencia ou
  *alfabeticamente).

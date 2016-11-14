@@ -4,10 +4,6 @@
 #ifndef __TABELASIMBOLO_LD_H
 #define __TABELASIMBOLO_LD_H
 
-/*esta função uma tabela de simbolos que usa uma Lista ligada e conta o números
- *de elementos presentes nela.
- */
-int nElementosLD(apontadorLG inicio);
 /*esta função uma tabela de simbolos que usa uma Lista ligada e ira criar um
  *vetor com os elementos desta tabela.
  */

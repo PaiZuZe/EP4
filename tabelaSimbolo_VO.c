@@ -64,6 +64,7 @@ stableV *insereStableVO(char *key, stableV *stable)
             for(k = stable->ultPos - 1; k >= i; k--){
                 stable->info[k + 1].palavra = malloc(strlen(stable->info[k].palavra)*sizeof(char));
                 strcpy(stable->info[k + 1].palavra,stable->info[k].palavra);
+                free(stable->info[k].palavra);
                 stable->info[k + 1].freq = stable->info[k].freq;
             }
             break;

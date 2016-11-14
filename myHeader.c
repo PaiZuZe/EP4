@@ -4,6 +4,14 @@
 #include<stdlib.h>
 #include<string.h>
 #include<myHeader.h>
+int nElementosLG(apontadorLG inicio)
+{
+    int j;
+    apontadorLG i;
+    for(i = inicio, j = 0; i != NULL; i = i->next, j++);
+    return j;
+}
+
 void mergeSortM(int inicio, int fim, data *V, char *tipoOrd)
 {
     int meio;
@@ -76,7 +84,6 @@ void mergeM(int inicio, int meio, int fim, data *V, char *tipoOrd)
         strcpy(V[i].palavra, w[i - inicio].palavra);
         V[i].freq = w[i - inicio].freq;
     }
-    free (w);
 }
 Buffer *criaBuffer()
 {

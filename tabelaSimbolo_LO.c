@@ -6,19 +6,12 @@
 #include<string.h>
 #include"myHeader.h"
 #include"tabelaSimbolo_LO.h"
-int nElementosLO(apontadorLG inicio)
+data *LOtoVD(apontadorLG inicio)
 {
     int j;
     apontadorLG i;
-    for(i = inicio, j = 0; i != NULL; i = i->next, j++);
-    return j;
-}
-
-data *LOtoVD(apontadorLG inicio){
-    int j;
-    apontadorLG i;
     data *V = NULL;
-    V = malloc(nElementosLO(inicio)*sizeof(data));
+    V = malloc(nElementosLG(inicio)*sizeof(data));
     for(i = inicio, j = 0; i != NULL; i = i->next, j++){
         V[j].palavra = malloc(strlen(i->info.palavra)*sizeof(char));
         strcpy(V[j].palavra, i->info.palavra);
@@ -46,14 +39,14 @@ void imprimeLO_O(apontadorLG stable)
      *os elementos da tabela e ordenalo em NlogN.
      */
     V = LOtoVD(stable);
-    mergeSortM(0, nElementosLO(stable), V, "O");
-    for(i = 0; i < nElementosLO(stable); i++){
+    mergeSortM(0, nElementosLG(stable), V, "O");
+    for(i = 0; i < nElementosLG(stable); i++){
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }
     /*vamos destruir nosso vetor auxiliar;
      */
-    for(i = 0; i < nElementosLO(stable); i++)
+    for(i = 0; i < nElementosLG(stable); i++)
         free(V[i].palavra);
     free(V);
     return;
@@ -78,8 +71,7 @@ void destroiStableLO(apontadorLG inicio)
 
 apontadorLG insereStableLO(char *key ,apontadorLG inicio)
 {
-    apontadorLG temp, anterior;
-    apontadorLG novoItem = malloc(sizeof(celulaLG));
+    apontadorLG temp, anterior, novoItem;
     temp = inicio;
     anterior = NULL;
     /*primeiro devemos verificar se a lista esta vazia.
@@ -103,6 +95,7 @@ apontadorLG insereStableLO(char *key ,apontadorLG inicio)
         anterior = temp;
         temp = temp->next;
     }
+    novoItem = malloc(sizeof(celulaLG));
     novoItem->info.palavra = malloc(strlen(key)*sizeof(char));
     strcpy(novoItem->info.palavra, key);
     novoItem->info.freq = 1;

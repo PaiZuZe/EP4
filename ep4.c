@@ -64,6 +64,7 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
             stableVD = insereStableVD(word->palavra, stableVD);
         clearBuffer(word);
     }
+    destroiBuffer(word);
     /*agora temos todas aspalavras do texto na table, basta imprimila como
      *desejado.
      */
@@ -98,8 +99,6 @@ void tabela(char *arquivoTxt,char *tipoTabela , char *tipoOrd){
     }
     return;
 }
-
-
 int main(int argc, char *argv[])
 {
     /*primeiro devemos ver se temos todos os argumentos nescessarios.

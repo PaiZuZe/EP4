@@ -6,19 +6,11 @@
 #include<string.h>
 #include"myHeader.h"
 #include"tabelaSimbolo_LD.h"
-int nElementosLD(apontadorLG inicio)
-{
-    int j;
-    apontadorLG i;
-    for(i = inicio, j = 0; i != NULL; i = i->next, j++);
-    return j;
-}
-
 data *LDtoVD(apontadorLG inicio){
     int j;
     apontadorLG i;
     data *V = NULL;
-    V = malloc(nElementosLD(inicio)*sizeof(data));
+    V = malloc(nElementosLG(inicio)*sizeof(data));
     for(i = inicio, j = 0; i != NULL; i = i->next, j++){
         V[j].palavra = malloc(strlen(i->info.palavra)*sizeof(char));
         strcpy(V[j].palavra, i->info.palavra);
@@ -34,14 +26,14 @@ void imprimeLD_A(apontadorLG stable)
      *os elementos da tabela e ordenalo em NlogN.
      */
     V = LDtoVD(stable);
-    mergeSortM(0, nElementosLD(stable), V, "A");
-    for(i = 0; i < nElementosLD(stable); i++){
+    mergeSortM(0, nElementosLG(stable), V, "A");
+    for(i = 0; i < nElementosLG(stable); i++){
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }
     /*vamos destruir nosso vetor auxiliar;
      */
-    for(i = 0; i < nElementosLD(stable); i++)
+    for(i = 0; i < nElementosLG(stable); i++)
         free(V[i].palavra);
     free(V);
     return;
@@ -57,17 +49,17 @@ void imprimeLD_O(apontadorLG stable)
      *frequencia, como iremos usar um sort estavel isso é garantido.
      */
     V = LDtoVD(stable);
-    mergeSortM(0, nElementosLD(stable), V, "A");
-    mergeSortM(0, nElementosLD(stable), V, "O");
-    for(i = 0; i < nElementosLD(stable); i++){
+    mergeSortM(0, nElementosLG(stable), V, "A");
+    mergeSortM(0, nElementosLG(stable), V, "O");
+    for(i = 0; i < nElementosLG(stable); i++){
         printf("%s ", V[i].palavra);
         printf("%d\n", V[i].freq);
     }
     /*vamos destruir nosso vetor auxiliar;
      */
-    for(i = 0; i < nElementosLD(stable); i++)
+    for(i = 0; i < nElementosLG(stable); i++)
         free(V[i].palavra);
-    free(V);    
+    free(V);
     return;
 }
 apontadorLG criaStableLD()

@@ -36,6 +36,7 @@ void destroiStableAB(apontadorAB inicio)
     if(inicio == NULL) return;
     if(inicio->esq != NULL) destroiStableAB(inicio->esq);
     if(inicio->dir != NULL) destroiStableAB(inicio->dir);
+    free(inicio->info.palavra);
     free(inicio);
     return;
 }

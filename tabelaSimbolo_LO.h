@@ -3,11 +3,6 @@
  */
 #ifndef __TABELASIMBOLO_LO_H
 #define __TABELASIMBOLO_LO_H
-
-/*esta função uma tabela de simbolos que usa uma Lista ligada e conta o números
- *de elementos presentes nela.
- */
-int nElementosLO(apontadorLG inicio);
 /*esta função uma tabela de simbolos que usa uma Lista ligada e ira criar um
  *vetor com os elementos desta tabela.
  */
